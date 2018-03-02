@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request user:</strong>
+  <%= @match_request.request_user_id %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @match_request.integer %>
+</p>
+
+<p>
+  <strong>Target user:</strong>
+  <%= @match_request.target_user_id %>
+</p>
+
+<p>
+  <strong>Integer:</strong>
+  <%= @match_request.integer %>
+</p>
+
+<%= link_to 'Edit', edit_match_request_path(@match_request) %> |
+<%= link_to 'Back', match_requests_path %>
