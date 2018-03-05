@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305032543) do
+ActiveRecord::Schema.define(version: 20180305045557) do
 
   create_table "match_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user1_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180305032543) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
   end
 
 end
