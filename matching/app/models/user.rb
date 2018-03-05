@@ -1,6 +1,9 @@
 class User < ApplicationRecord
 has_many :sent_match_requests, :class_name => MatchRequest, :foreign_key => :request_user_id
 has_many :targeted_match_requests, :class_name => MatchRequest, :foreign_key => :target_user_id
+
+mount_uploader :image, ImageUploader
+
   def matchers
       requester_ids = targeted_match_requests.pluck(:request_user_id)
           sent_match_requests
