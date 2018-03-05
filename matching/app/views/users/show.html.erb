@@ -6,8 +6,10 @@
 </p>
 
 <p>
-  <strong>String:</strong>
-  <%= @user.string %>
+  <strong>matchers:</strong>
+  <% @user.matchers.each do |matcher| %>
+    <%= matcher.name %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
