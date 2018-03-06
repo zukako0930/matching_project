@@ -8,7 +8,7 @@ current_user_id:<%= session[:user_id] %>
 <p>
   <strong>matchers:</strong>
   <% @user.matchers.each do |matcher| %>
-    <%= matcher.name %>
+    <%= link_to matcher.name, messages_path(receive_id: matcher.id, send_id: @user.id) %>
   <% end %>
 </p>
 
