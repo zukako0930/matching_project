@@ -4,10 +4,13 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
-    #@messages = Message.all
-    @messages = Message.talk(params[:receive_id], params[:send_id])
-    @send_user = User.find(params[:send_id])
-    @receive_user = User.find(params[:receive_id])
+    if params[:send_id]
+      @messages = Message.talk(params[:receive_id], params[:send_id])
+      @send_user = User.find(params[:send_id])
+      @receive_user = User.find(params[:receive_id])
+    else
+      @messages = Message.all
+    end
   end
 
   # GET /messages/1
@@ -29,10 +32,15 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
+
     respond_to do |format|
       if @message.save
-        format.html { redirect_to @message, notice: 'Message was successfully created.' }
-        format.json { render :show, status: :created, location: @message }
+        #@send_user = User.find(@message.send_user_id)
+        #@receive_user = User.find(@message.receive_user_id)
+        format.html { redirect_to :action => "index" ,:flash => {:send_id => @message.send_user_id, :receive_id => @message.receive_user_id  } }
+        #format.json { render :index, status: :created, location: @message }
+        #format.html { redirect_to @message, notice: 'Message was successfully created.' }
+        #format.json { render :show, status: :created, location: @message }
       else
         format.html { render :new }
         format.json { render json: @message.errors, status: :unprocessable_entity }

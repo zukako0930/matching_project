@@ -2,6 +2,7 @@
 
 <h1>Messages</h1>
 
+
 <table>
   <thead>
     <tr>
@@ -19,7 +20,7 @@
           <td><%= @send_user.name %></td>
           <td><%= message.body %></td>
           <td><%= message.created_at %></td>
-        <% else message.send_user_id == @send_user.id %>
+        <% else message.receive_user_id == @send_user.id %>
           <td><%= @receive_user.name %></td>
           <td><%= message.body %></td>
           <td><%= message.created_at %></td>
@@ -35,5 +36,22 @@
 </table>
 
 <br>
+
+
+<%= form_with model: Message.new do |form| %>
+  <div class="field">
+    <% form.label :body %>
+  <%= form.text_field :body, id: :message_body %>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :send_user_id, :value => @send_user.id %>
+    <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
+  </div>
+  <div class="actions">
+    <%= form.submit "送信"%>
+  </div>
+<% end %>
+
+
 
 <% link_to 'New Message', new_message_path %>
