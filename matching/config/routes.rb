@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'users/target_user_list'
   get 'match_requests/target_user_list'
 
+
   resources :match_requests
   resources :users
   get    'login'   => 'sessions#new'

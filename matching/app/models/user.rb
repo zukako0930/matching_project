@@ -6,6 +6,7 @@ has_many :targeted_match_requests, :class_name => MatchRequest, :foreign_key => 
 
 has_many :send_message, :class_name => Message, :foreign_key => :send_user_id
 has_many :receive_message, :class_name => Message, :foreign_key => :receive_user_id
+
 before_save { self.email = email.downcase }
 validates :name, presence: true, length: { maximum: 50 }
 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
