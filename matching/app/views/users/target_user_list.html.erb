@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Target Users</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <%= form_for(model: MatchRequest.new) do |form| %>
+      <tr>
+        <td><%= user.name %></td>
+        <%= form.hidden_field :request_user_id, :value => @current_user.id%>
+        <%= form.hidden_field :target_user_id, :value => user.id%>
+        <%= form.submit %>
+        <!-- <td><%= link_to 'リクエストを送る', controller: "match_requests", action: "create", request_user_id: @current_user.id, target_user_id: user.id %></td> -->
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<br>

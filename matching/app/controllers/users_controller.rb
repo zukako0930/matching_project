@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
   end
-
   # GET /users/new
   def new
     @user = User.new
@@ -59,6 +58,12 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  #自分以外のユーザを表示：他人にいいね送るため
+  def target_user_list
+    @current_user = User.find_by(id: session[:user_id])
+    @users = User.where("id != ?",@current_user.id)
   end
 
   private
