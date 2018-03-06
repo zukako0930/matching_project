@@ -12,13 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180305074737) do
 
-  create_table "match_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "user1_id"
-    t.integer "user2_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "match_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "request_user_id"
     t.string "integer"
@@ -40,6 +33,8 @@ ActiveRecord::Schema.define(version: 20180305074737) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "password_digest"
+    t.string "email"
   end
 
 end
