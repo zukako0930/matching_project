@@ -16,10 +16,14 @@
     <%= form.text_field :name, id: :user_name %>
   </div>
 
+
+
   <div class="field">
-    <%= form.label :string %>
-    <%= form.text_field :string, id: :user_string %>
+      <%= form.label :image %>
+      <%= form.file_field :image %>
   </div>
+
+
 
   <div class="actions">
     <%= form.submit %>

@@ -11,7 +11,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
   end
-
   # GET /users/new
   def new
     @user = User.new
@@ -61,6 +60,12 @@ class UsersController < ApplicationController
     end
   end
 
+  #自分以外のユーザを表示：他人にいいね送るため
+  def target_user_list
+    @current_user = User.find_by(id: session[:user_id])
+    @users = User.where("id != ?",@current_user.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -69,6 +74,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :string)
+      params.require(:user).permit(:name, :string, :image)
     end
 end
