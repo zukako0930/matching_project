@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get 'sessions/new'
+  get 'users/target_user_list'
+  get 'match_requests/target_user_list'
 
   resources :match_requests
   resources :users
