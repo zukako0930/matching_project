@@ -12,5 +12,13 @@
   <% end %>
 </p>
 
+<p>
+  <strong>images:</strong>
+  <% if @user.image %>
+    <%= image_tag @user.image %>
+  <% end %>
+</p>
+
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
