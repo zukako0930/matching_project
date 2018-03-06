@@ -16,10 +16,6 @@ class MessagesController < ApplicationController
       @messages = Message.talk(params[:receive_id], params[:send_id])
       @send_user = User.find(params[:send_id])
       @receive_user = User.find(params[:receive_id])
-    elsif send_id
-      @messages = Message.talk(receive_id, send_id)
-      @send_user = User.find(send_id)
-      @receive_user = User.find(receive_id)
     else
       @messages = Message.all
     end
