@@ -3,6 +3,20 @@
 <h1>Messages</h1>
 
 
+<%= form_with model: Message.new do |form| %>
+  <div class="field">
+    <% form.label :body %>
+    <%= form.text_field :body, id: :message_body %>
+  </div>
+  <div class="field">
+    <%= form.hidden_field :send_user_id, :value => @send_user.id %>
+    <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
+  </div>
+  <div class="actions">
+    <%= form.submit "送信"%>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -14,7 +28,7 @@
   </thead>
 
   <tbody>
-    <% @messages.each do |message| %>
+    <% @messages.reverse_each do |message| %>
       <tr>
         <% if message.send_user_id == @send_user.id %>
           <td><%= @send_user.name %></td>
@@ -38,19 +52,6 @@
 <br>
 
 
-<%= form_with model: Message.new do |form| %>
-  <div class="field">
-    <% form.label :body %>
-  <%= form.text_field :body, id: :message_body %>
-  </div>
-  <div class="field">
-    <%= form.hidden_field :send_user_id, :value => @send_user.id %>
-    <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
-  </div>
-  <div class="actions">
-    <%= form.submit "送信"%>
-  </div>
-<% end %>
 
 
 
