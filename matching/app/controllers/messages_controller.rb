@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.json
   def index
+    @current_user = User.find_by(id: session[:user_id])
     if flash[:send_id]
       send_id = flash[:send_id]
       receive_id = flash[:receive_id]

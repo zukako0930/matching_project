@@ -14,6 +14,7 @@
     <%= form_for(MatchRequest.new) do |form| %>
       <tr>
         <td><%= link_to user.name, controller: :users, action: :profile,id: user %></td>
+        <!-- userでidが渡る -->
         <%= form.hidden_field :request_user_id, :value => @current_user.id%>
         <%= form.hidden_field :target_user_id, :value => user.id%>
         <td><%= form.submit 'リクエストを送る' %></td>

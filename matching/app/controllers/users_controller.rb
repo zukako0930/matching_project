@@ -62,16 +62,11 @@ class UsersController < ApplicationController
     end
   end
 
-  #自分以外のユーザを表示：他人にいいね送るため
-  def target_user_list
-    @current_user = User.find_by(id: session[:user_id])
-    @users = User.where("id != ?",@current_user.id)
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      @current_user = User.find_by(id: session[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
