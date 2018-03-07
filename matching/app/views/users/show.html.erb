@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h1>ホーム画面</h1>
 <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p>
+<!-- デフォルトがgetアクセスなのでmethod: :deleteの指定が必要 -->
+<!-- rails routesでlogoutになっていればlogout_pathで取得できる -->
+<%= link_to 'ログアウト', logout_path, method: :delete %>
 <p>
   <strong>あなたのお名前：</strong>
   <%= @user.name %>
