@@ -2,10 +2,10 @@ class MatchRequestsController < ApplicationController
   before_action :set_match_request, only: [:show, :edit, :update, :destroy]
 
   def target_user_list
-    @current_user = User.find_by(id: session[:user_id])
-    @users = User.where("id != ?",@current_user.id)
+    @current_user = User.find_by(id: session[:user_id]) #自分
+    @users = User.where("id != ?",@current_user.id) #自分以外
   end
-  
+
   # GET /match_requests
   # GET /match_requests.json
   def index

@@ -13,7 +13,7 @@
     <% @users.each do |user| %>
     <%= form_for(MatchRequest.new) do |form| %>
       <tr>
-        <td><%= user.name %></td>
+        <td><%= link_to user.name, controller: :users, action: :profile,id: user %></td>
         <%= form.hidden_field :request_user_id, :value => @current_user.id%>
         <%= form.hidden_field :target_user_id, :value => user.id%>
         <td><%= form.submit 'リクエストを送る' %></td>

@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:profile,:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
+  def profile
+  end
   def index
     @users = User.all
   end
