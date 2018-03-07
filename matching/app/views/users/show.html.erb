@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1>ホーム画面</h1>
 <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p>
-<!-- デフォルトがgetアクセスなのでmethod: :deleteの指定が必要 -->
-<!-- rails routesでlogoutになっていればlogout_pathで取得できる -->
-<%= link_to 'ログアウト', logout_path, method: :delete %>
+
 <p>
   <strong>あなたのお名前：</strong>
   <%= @user.name %>
@@ -18,15 +16,31 @@
 
 <p>
   <strong>マッチした相手にメッセージを送る</strong><br>
-  <% @user.matchers.each do |matcher| %>
-    <%= link_to matcher.name, messages_path(receive_id: matcher.id, send_id: @user.id) %>
-    <!-- imageのサイズ調整必須 -->
-    <%= image_tag matcher.image %><br>
-  <% end %>
+  <div class = "row">
+    <% @user.matchers.each do |matcher| %>
+      <div class="container col-4">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag matcher.image, class: "card-img-top", alt: "Card image cap" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= matcher.name %></h5>
+            <p class="card-text"></p>
+            <%= link_to messages_path(receive_id: matcher.id, send_id: @user.id) do %>
+              <button type="button" class="btn btn-primary">メッセージを送る</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </p>
 
+<%= link_to edit_user_path(@user) do %>
+  <button type="button" class="btn btn-outline-primary btn-lg btn-block">プロフィールを編集</button>
+<% end %>
+<button type="button" class="btn btn-outline-primary btn-lg btn-block">
+<%= link_to "マッチを探す",{controller: :match_requests, action: :target_user_list} %>
+</button>
 
-
-<%= link_to 'プロフィールを編集', edit_user_path(@user) %><br>
-<%= link_to 'マッチを探す', {controller: :match_requests, action: :target_user_list} %>
-<!-- <%= link_to 'Back', users_path %> -->
+<%= link_to logout_path, method: :delete do%>
+  <button type="button" class="btn btn-outline-primary btn-lg btn-block">ログアウト</button>
+<% end %>
