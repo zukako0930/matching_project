@@ -37,9 +37,10 @@
 <%= link_to edit_user_path(@user) do %>
   <button type="button" class="btn btn-outline-primary btn-lg btn-block">プロフィールを編集</button>
 <% end %>
-<button type="button" class="btn btn-outline-primary btn-lg btn-block">
-<%= link_to "マッチを探す",{controller: :match_requests, action: :target_user_list} %>
-</button>
+
+<%= link_to match_requests_target_user_list_path(@current_user) do %>
+  <button type="button" class="btn btn-outline-primary btn-lg btn-block">マッチを探す</button>
+<% end %>
 
 <%= link_to logout_path, method: :delete do%>
   <button type="button" class="btn btn-outline-primary btn-lg btn-block">ログアウト</button>
