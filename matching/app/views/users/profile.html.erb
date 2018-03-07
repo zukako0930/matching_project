@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-current_user_id:<%= session[:user_id] %>
+<p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p>
 <p>
   <strong>名前：</strong>
   <%= @user.name %>
