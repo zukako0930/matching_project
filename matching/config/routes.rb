@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root to: 'sessions#new' 
   resources :messages
   get 'sessions/new'
   get 'users/target_user_list'
