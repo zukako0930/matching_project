@@ -1,24 +1,28 @@
 <p id="notice"><%= notice %></p>
 current_user_id:<%= session[:user_id] %>
 <p>
-  <strong>Name:</strong>
+  <strong>あなたのお名前：</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>matchers:</strong>
-  <% @user.matchers.each do |matcher| %>
-    <%= link_to matcher.name, messages_path(receive_id: matcher.id, send_id: @user.id) %>
-  <% end %>
-</p>
-
-<p>
-  <strong>images:</strong>
+  <strong>あなたのプロフィール画像</strong><br>
   <% if @user.image %>
     <%= image_tag @user.image %>
   <% end %>
 </p>
 
+<p>
+  <strong>マッチした相手にメッセージを送る</strong><br>
+  <% @user.matchers.each do |matcher| %>
+    <%= link_to matcher.name, messages_path(receive_id: matcher.id, send_id: @user.id) %>
+    <!-- imageのサイズ調整必須 -->
+    <%= image_tag matcher.image %><br>
+  <% end %>
+</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+
+<%= link_to 'プロフィールを編集', edit_user_path(@user) %><br>
+<%= link_to 'マッチを探す', {controller: :match_requests, action: :target_user_list} %>
+<!-- <%= link_to 'Back', users_path %> -->
