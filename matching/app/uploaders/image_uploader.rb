@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   #画像の上限を200pxにする
-  process :resize_to_limit => [200,200]
+  process :resize_and_pad => [160,160]
 
   #保存形式をJPGにする
   process :convert => 'jpg'
