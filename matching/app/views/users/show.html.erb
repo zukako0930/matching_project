@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>ホーム画面</h1>
-<p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p>
+<!-- <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p> -->
 
 <p>
   <strong>あなたのお名前：</strong>
@@ -19,7 +19,7 @@
   <div class = "row">
     <% @user.matchers.each do |matcher| %>
       <div class="container col-4">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 13rem;">
           <%= image_tag matcher.image, class: "card-img-top", alt: "Card image cap" %>
           <div class="card-body">
             <h5 class="card-title"><%= matcher.name %></h5>
@@ -37,11 +37,11 @@
 <%= link_to edit_user_path(@user) do %>
   <button type="button" class="btn btn-outline-primary btn-lg btn-block">プロフィールを編集</button>
 <% end %>
-
+<br>
 <%= link_to match_requests_target_user_list_path(@current_user) do %>
   <button type="button" class="btn btn-outline-primary btn-lg btn-block">マッチを探す</button>
 <% end %>
-
+<br>
 <%= link_to logout_path, method: :delete do%>
   <button type="button" class="btn btn-outline-primary btn-lg btn-block">ログアウト</button>
 <% end %>
