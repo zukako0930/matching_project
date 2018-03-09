@@ -13,11 +13,11 @@
 
     <% if @current_user%>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      
+
       <!-- アプリのアイコン -->
       <!-- なぜか不自然なスペースができるだけで画像が表示されない -->
       <a class="navbar-brand" href="#">
-        <img src="assets/brand/papillon.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <%= image_tag "papillon.svg", width: "30", height: "30",class:"d-inline-block align-top",alt:"" %>
         Papillon
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

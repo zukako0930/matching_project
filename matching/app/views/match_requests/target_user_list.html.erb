@@ -27,7 +27,7 @@
   <% @users.each do |user| %>
     <!-- <div class="container col-xs-4"> -->
       <%= form_for(MatchRequest.new) do |form| %>
-          <%= image_tag user.image, class: "rounded-circle"%>
+          <%= link_to image_tag(user.image, class: "rounded-circle"), controller: :users, action: :profile,id: user%>
             <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
             <p><% if user.selfintro %><%= user.selfintro.truncate(20) %><% end %></p>
             <%= form.hidden_field :request_user_id, :value => @current_user.id%>
