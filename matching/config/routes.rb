@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'match_requests/target_user_list'
   get 'users/:id/profile' => 'users#profile'
-
+  get 'messages/messageall'
   resources :match_requests
   resources :users
   get    'login'   => 'sessions#new'

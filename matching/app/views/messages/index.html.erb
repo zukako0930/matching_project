@@ -2,14 +2,14 @@
 
 <h1>Messages</h1>
 <!-- <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p> -->
-
+<!-- 新規メッセージの作成 -->
 <%= form_with model: Message.new do |form| %>
   <div class="field">
     <% form.label :body %>
     <%= form.text_field :body, id: :message_body %>
   </div>
   <div class="field">
-    <%= form.hidden_field :send_user_id, :value => @send_user.id %>
+    <%= form.hidden_field :send_user_id, :value => @current_user.id %>
     <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
   </div>
   <div class="actions">
@@ -28,16 +28,25 @@
   </thead>
   <tbody>
     <% @messages.reverse_each do |message| %>
-      <tr>
-        <% if message.send_user_id == @send_user.id %>
-          <td><%= @send_user.name %></td>
-          <td><%= message.body %></td>
-          <td><%= message.created_at %></td>
-        <% else message.receive_user_id == @send_user.id %>
-          <td><%= link_to @receive_user.name, controller: :users, action: :profile,id: @receive_user%></td>
-          <td><%= message.body %></td>
-          <td><%= message.created_at %></td>
-        <% end %>
+    <div class="container-fluid">
+      <div class="comment_area">
+        <div ng-repeat="data in hoge.chatdata">
+          <div class="row">
+            <div class="col-md-12">
+              <% if message.send_user_id == @current_user.id %>
+              <%= image_tag @current_user.image, :size => "25x25" ,class: "rounded-circle" %>
+              <%= @current_user.name %>
+                <p class="right_balloon"><%= message.body %></p>
+              <% else message.receive_user_id == @current_user.id %>
+                <span ng-if="data.type == 'chat'">
+                  <p class="left_balloon"><%= message.body %></p>
+                </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
         <td><% message.send_user_id %></td>
         <td><% message.receive_user_id %></td>
         <td><% link_to 'Show', message %></td>

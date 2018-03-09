@@ -19,7 +19,7 @@
   <div class = "row">
     <% @user.matchers.each do |matcher| %>
       <div class="container col-4">
-        <div class="card" style="width: 11rem;">
+        <div class="card text-center" style="width: 13rem;">
           <%= image_tag matcher.image, class: "card-img-top", alt: "Card image cap" %>
           <div class="card-body">
             <h5 class="card-title"><%= matcher.name %></h5>
