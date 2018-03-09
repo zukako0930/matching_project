@@ -1,18 +1,18 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+  def data_check
+    @messages = Message.all
+  end
+
   # GET /messages
   # GET /messages.json
   def index
     @current_user = User.find_by(id: session[:user_id])
-    receive_id = params[:receive_id]
     @messages = Message.talk(params[:receive_id], @current_user.id)
     @receive_user = User.find(params[:receive_id])
   end
 
-  def allmessage
-    @massages = Message.all
-  end
   # GET /messages/1
   # GET /messages/1.json
   def show
