@@ -17,33 +17,40 @@
   </div>
 <% end %>
 <div class="container">
-<% @messages.reverse_each do |message| %>
-<div class="container-fluid">
-  <div class="comment_area">
-    <div ng-repeat="data in hoge.chatdata">
-      <div class="row">
-        <div class="col-md-10">
-          <% if message.send_user_id == @current_user.id %>
-            <div class="pull-right">
-              <%= image_tag @current_user.image, :size => "25x25" ,class: "rounded-circle" %>
-              <%= @current_user.name %>
+  <% @messages.reverse_each do |message| %>
+    <div class="container-fluid">
+      <div class="comment_area">
+        <div ng-repeat="data in hoge.chatdata">
+          <div class="row">
+            <div class="col-md-10">
+              <% if message.send_user_id == @current_user.id %>
+                <div class="pull-right">
+                  <%= image_tag @current_user.image, :size => "25x25" ,class: "rounded-circle" %>
+                  <%= @current_user.name %>
+                </div>
+                <p class="right_balloon"><%= message.body %></p>
+              <% else message.receive_user_id == @current_user.id %>
+                <span ng-if="data.type == 'chat'">
+                  <div class="pull-left">
+                    <%= image_tag @receive_user.image, :size => "25x25" ,class: "rounded-circle" %>
+                    <%= @receive_user.name %>
+                  </div>
+                  <p class="left_balloon"><%= message.body %></p>
+                </span>
+              <% end %>
             </div>
-            <p class="right_balloon"><%= message.body %></p>
-          <% else message.receive_user_id == @current_user.id %>
-            <span ng-if="data.type == 'chat'">
-              <div class="pull-left">
-                <%= image_tag @receive_user.image, :size => "25x25" ,class: "rounded-circle" %>
-                <%= @receive_user.name %>
-              </div>
-              <p class="left_balloon"><%= message.body %></p>
-            </span>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<% end %>
+  <% end %>
+  <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
+    <div class="container">
+      <div class="container col-md-1 col-md-offset-6">
+      <span class="navbar-text" href="#" style="color:White">@<%= @receive_user.name %></span>
+      </div>
+    </div>
+  </nav>
 </div>
 <br>
 

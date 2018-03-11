@@ -3,8 +3,10 @@
 
   <head>
     <title>Matching</title>
+    <!-- <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,7 +14,7 @@
   <!-- <body data-spy="scroll" data-target=".navbar" data-offset="50"> -->
 
     <% if @current_user%>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
 
       <!-- アプリのアイコン -->
       <!-- なぜか不自然なスペースができるだけで画像が表示されない -->
@@ -24,7 +26,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
           <%= link_to 'マイページ', user_path(@current_user), class: "nave-item nav-link" %>
           <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nave-item nav-link" %>
 
