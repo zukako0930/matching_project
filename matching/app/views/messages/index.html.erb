@@ -16,13 +16,13 @@
     </div>
   </div>
 <% end %>
-<div class="container">
+<div class="container col-md-8"  style="background-color:#4BB1FF;">
   <% @messages.reverse_each do |message| %>
-    <div class="container-fluid">
+    <!-- <div class="container col-md-8"> -->
       <div class="comment_area">
         <div ng-repeat="data in hoge.chatdata">
           <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
               <% if message.send_user_id == @current_user.id %>
                 <div class="pull-right">
                   <%= image_tag @current_user.image, :size => "25x25" ,class: "rounded-circle" %>
@@ -42,12 +42,15 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   <% end %>
   <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
     <div class="container">
       <div class="container col-md-1 col-md-offset-6">
-      <span class="navbar-text" href="#" style="color:White">@<%= @receive_user.name %></span>
+      <%=image_tag @receive_user.image, :size => "25x25", class:"rounded-circle"%>
+      <span class="navbar-text" href="#" style="color:White">
+        <%= @receive_user.name %>
+      </span>
       </div>
     </div>
   </nav>
