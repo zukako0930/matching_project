@@ -1,8 +1,13 @@
 class User < ApplicationRecord
+# Login機能のため
 has_secure_password
+# MatchRequestを介してuser-userがn対nの関係
 has_many :sent_match_requests, :class_name => MatchRequest, :foreign_key => :request_user_id
 has_many :targeted_match_requests, :class_name => MatchRequest, :foreign_key => :target_user_id
-
+# MeetRequestを介してuser-userがn対nの関係
+has_many :sent_meet_requests, :class_name => MeetRequest, :foreign_key => :request_user_id
+has_many :targeted_meet_requests, :class_name => MeetRequest, :foreign_key => :target_user_id
+# Messageを介してuser-userがn対nの関係
 has_many :send_message, :class_name => Message, :foreign_key => :send_user_id
 has_many :receive_message, :class_name => Message, :foreign_key => :receive_user_id
 

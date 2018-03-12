@@ -1,0 +1,2 @@
+class MeetRequest < ApplicationRecord
+end

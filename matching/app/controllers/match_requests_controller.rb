@@ -33,16 +33,20 @@ class MatchRequestsController < ApplicationController
   # POST /match_requests.json
   def create
     @match_request = MatchRequest.new(match_request_params)
-
-    respond_to do |format|
-      if @match_request.save
-        format.html { redirect_to @match_request, notice: 'Match request was successfully created.' }
-        format.json { render :show, status: :created, location: @match_request }
-      else
-        format.html { render :new }
-        format.json { render json: @match_request.errors, status: :unprocessable_entity }
-      end
+    if @match_request.save
+      redirect_to action: 'target_user_list', notice: 'リクエストを送信しました。'
+    else
+      render :new, notice: 'リクエスト送信エラー'
     end
+    # respond_to do |format|
+      # if @match_request.save
+      #   format.html { redirect_to action: 'target_user_list',notice: 'Match request was successfully created.'}
+      #   format.json { render :show, status: :created, location: @match_request }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @match_request.errors, status: :unprocessable_entity }
+      # end
+    # end
   end
 
   # PATCH/PUT /match_requests/1

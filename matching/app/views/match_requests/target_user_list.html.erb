@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<% if params[:notice] %>
+  <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
+<% end %>
 <h1>Target Users</h1>
 <!-- 上下どっちかのデザインにする -->
 <!-- <div class = "row">
