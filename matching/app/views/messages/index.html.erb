@@ -16,6 +16,7 @@
     </div>
   </div>
 <% end %>
+<% if @messages %>
 <div class="container col-md-8"  style="background-color:#4BB1FF;">
   <% @messages.reverse_each do |message| %>
     <!-- <div class="container col-md-8"> -->
@@ -43,6 +44,7 @@
         </div>
       </div>
     <!-- </div> -->
+  <% end %>
   <% end %>
   <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
     <div class="container">

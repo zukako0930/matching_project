@@ -14,5 +14,7 @@
  *= require_self
  */
 @import "bootstrap";
+// @import "bootstrap-sprockets";
 @import "font-awesome";
+//固定したバーに隠れる部分をなくすため
 body { padding-top: 70px; }
