@@ -25,16 +25,21 @@ class MeetRequestsController < ApplicationController
   # POST /meet_requests.json
   def create
     @meet_request = MeetRequest.new(meet_request_params)
-
-    respond_to do |format|
-      if @meet_request.save
-        format.html { redirect_to @meet_request, notice: 'Meet request was successfully created.' }
-        format.json { render :show, status: :created, location: @meet_request }
-      else
-        format.html { render :new }
-        format.json { render json: @meet_request.errors, status: :unprocessable_entity }
-      end
+    @receive_user = User.find(@meet_request.meet_target_user_id)
+    if @meet_request.save
+      redirect_to controller: 'messages', action: 'index', :receive_id => @receive_user.id, notice: '会いたい！状態です。'
+    else
+      render :new, notice: '会いたいボタンエラー'
     end
+    # respond_to do |format|
+    #   if @meet_request.save
+    #     format.html { redirect_to @meet_request, notice: 'Meet request was successfully created.' }
+    #     format.json { render :show, status: :created, location: @meet_request }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @meet_request.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /meet_requests/1
