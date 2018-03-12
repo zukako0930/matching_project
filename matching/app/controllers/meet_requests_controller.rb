@@ -69,6 +69,6 @@ class MeetRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meet_request_params
-      params.require(:meet_request).permit(:request_user_id, :target_user_id)
+      params.require(:meet_request).permit(:meet_request_user_id, :meet_target_user_id)
     end
 end

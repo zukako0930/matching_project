@@ -3,7 +3,7 @@ class MatchRequestsController < ApplicationController
 
   def target_user_list
     @current_user = User.find_by(id: session[:user_id]) #自分
-    #送信者が自分のリクエストのターゲットユーザのリスト
+    #送信者が自分のリクエストのターゲットユーザのリスト(自分がリクエストを送った人)
     requested = MatchRequest.where(request_user_id: @current_user.id).pluck(:target_user_id)
     @users = User.where("id != ?",@current_user.id).where.not(id: requested) #自分以外
 

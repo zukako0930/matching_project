@@ -2,25 +2,6 @@
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
 <h1>Target Users</h1>
-<!-- 上下どっちかのデザインにする -->
-<!-- <div class = "row">
-  <% @users.each do |user| %>
-    <div class="container col-4">
-      <%= form_for(MatchRequest.new) do |form| %>
-        <div class="card text-center" style="width: 15rem;">
-          <%= image_tag user.image, class: "card-img-top", alt: "Card image cap" %>
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
-            <p class="card-text"><% if user.selfintro %><%= user.selfintro.truncate(20) %><% end %></p>
-            <%= form.hidden_field :request_user_id, :value => @current_user.id%>
-            <%= form.hidden_field :target_user_id, :value => user.id%>
-            <%= form.submit 'リクエストを送る', class: "btn btn-primary"%>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div> -->
 <div class="container fluid">
 <div class = "row">
   <!-- <div class="col-md-2" style="background-color:red;">Red</div> -->

@@ -14,8 +14,8 @@
   <tbody>
     <% @meet_requests.each do |meet_request| %>
       <tr>
-        <td><%= meet_request.request_user_id %></td>
-        <td><%= meet_request.target_user_id %></td>
+        <td><%= meet_request.meet_request_user_id %></td>
+        <td><%= meet_request.meet_target_user_id %></td>
         <td><%= link_to 'Show', meet_request %></td>
         <td><%= link_to 'Edit', edit_meet_request_path(meet_request) %></td>
         <td><%= link_to 'Destroy', meet_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
