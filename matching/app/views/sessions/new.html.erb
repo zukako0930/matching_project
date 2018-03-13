@@ -1,22 +1,25 @@
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-
+<div style="background-image:url(<%= asset_path "yoshi.png" %>)"/>
+<!-- <img src="assets/yoshi.png" class="img-responsive"> -->
 <% if @error %>
   <div class="alert alert-danger" role="alert">
     <%= @error %>
   </div>
 <% end %>
 <% provide(:title, "Log in") %>
+<div class="container-fluid">
 <div class="row">
   <!-- <div class="jumbotron"> -->
-  <div class="container col-md-4">
-    <img src="assets/yoshi.jpg" class="img-responsive">
+  <div class="container col-md-2">
+    <!-- <div style="background-image:url(<%= asset_path "yoshi2.jpg" %>)" /> -->
+    <!-- <img src="assets/yoshi2.jpg" class="img-responsive"> -->
   </div>
 <!-- </div> -->
   <div class="container col-md-4">
-    吉岡里帆のような人と出会いたいあなたに。<br>
-    完全美男美女限定版!
+    <!-- <img src="assets/sub.png"> -->
+    <br><br><br><br><br><br><br><br>
     <%= form_for(:session, url: login_path) do |f| %>
       <div class="field">
         <%= f.label :email %>
@@ -30,7 +33,8 @@
     <% end %>
     <br>
   </div>
-  <!-- <div class="container col-md-2">
-    <%= image_tag 'top.jpg'%>
+  <!-- <div class="container col-md-4">
   </div> -->
 </div>
+</div>
+<br><br><br><br><br><br><br><br>
