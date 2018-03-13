@@ -1,3 +1,4 @@
+<div class="container">
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
@@ -8,6 +9,7 @@
     <%= @error %>
   </div>
 <% end %>
+</div>
 <% provide(:title, "Log in") %>
 <div class="container-fluid">
 <div class="row">

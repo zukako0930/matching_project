@@ -19,10 +19,8 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <% if @current_user %>
-            <li class="nav-item">
-              <%= link_to 'マイページ', user_path(@current_user), class: "nave-item nav-link" %>
-              <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nave-item nav-link" %>
-            </li>
+            <%= link_to 'マイページ', user_path(@current_user), class: "nave-item nav-link" %>
+            <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nave-item nav-link" %>
             <!-- なぜかドロップダウンが展開されない -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,6 +35,7 @@
             <li class="nav-item">
               <%= link_to 'ログアウト', logout_path, method: :delete, class: "nave-item nav-link" %>
             </li>
+            <a class="nav-item nav-link disabled">|</a>
             <a class="nav-item nav-link disabled" href="#" style="color:Blue"><%=@current_user.name%>でログイン中</a>
           <% else %>
             <form class="form-inline">
