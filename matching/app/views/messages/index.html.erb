@@ -55,10 +55,10 @@
       <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id%>
       <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
         <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
-        <a class="btn btn-success disabled" role="button">送信済</a>
+        <a class="btn btn-success btn-block disabled" role="button">送信済</a>
         <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
       <% else %>
-        <%= form.submit '会いたい！', class: "btn btn-success"%>
+        <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
       <% end %>
     <% end %>
   </div>
