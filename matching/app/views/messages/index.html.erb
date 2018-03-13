@@ -3,24 +3,7 @@
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
 <h1>Messages</h1>
-<!-- <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p> -->
-<!-- 新規メッセージの作成 -->
-<!-- <%= form_with model: Message.new do |form| %>
-  <div class="field">
-    <%= form.hidden_field :send_user_id, :value => @current_user.id %>
-    <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend"><span class="input-group-text">To: <%= @receive_user.name%></span></div>
-    <% form.label :body %>
-    <%= form.text_field :body, id: :message_body, class: "form-control", placeholder: "想いを伝えよう。" %>
-    <div class="input-group-append">
-      <%= form.submit "送信",class: "btn btn-outline-primary" %>
-    </div>
-  </div>
-<% end %> -->
 <div class="row">
-
 
   <div class="container col-md-8"  style="background-color:#4BB1FF;">
     <%= form_with model: Message.new do |form| %>
@@ -64,14 +47,15 @@
           </div>
       <% end %>
     <% end %>
-
   </div>
   <div class="container col-md-2">
+    会いたい！ボタン
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
       <%= form.hidden_field :meet_request_user_id, :value => @current_user.id%>
       <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id%>
       <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
-        <%= form.submit '会いたい！', class: "btn btn-success disabled" %>
+        <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
+        <a class="btn btn-success disabled" role="button">送信済</a>
         <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
       <% else %>
         <%= form.submit '会いたい！', class: "btn btn-success"%>
