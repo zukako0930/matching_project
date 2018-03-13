@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   # ログインフォームのためのコントローラ
   def new
+    # render :layout => nil
   end
   def create #scaffoldなら自動生成？
     # userにデータベースからemail検索したuserを入れる

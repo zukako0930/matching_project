@@ -1,18 +1,22 @@
-<!-- <h1>Sessions#new</h1> -->
-<!-- <p>Find me in app/views/sessions/new.html.erb</p> -->
-<!-- <p style="color:Red"><%= @error %></p> -->
-<div style="background-size: cover">
-<div style="background-image:url(<%= asset_path "top.jpg" %>)" width:"100%" height:"100%" >
+<% if params[:notice] %>
+  <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
+<% end %>
+
 <% if @error %>
   <div class="alert alert-danger" role="alert">
     <%= @error %>
   </div>
 <% end %>
-
 <% provide(:title, "Log in") %>
-<h1>ログイン</h1>
 <div class="row">
-  <div class="container col-md-6">
+  <!-- <div class="jumbotron"> -->
+  <div class="container col-md-4">
+    <img src="assets/yoshi.jpg" class="img-responsive">
+  </div>
+<!-- </div> -->
+  <div class="container col-md-4">
+    吉岡里帆のような人と出会いたいあなたに。<br>
+    完全美男美女限定版!
     <%= form_for(:session, url: login_path) do |f| %>
       <div class="field">
         <%= f.label :email %>
@@ -24,11 +28,9 @@
       </div>
       <%= f.submit "ログイン", class: "btn btn-primary" %>
     <% end %>
+    <br>
   </div>
-<!--
-  <div class="container col-md-6">
+  <!-- <div class="container col-md-2">
     <%= image_tag 'top.jpg'%>
   </div> -->
-</div>
-</div>
 </div>

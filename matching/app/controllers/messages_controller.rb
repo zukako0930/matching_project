@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
 # アクセスできない
-  def data_check
+  def check
     @messages = Message.all
   end
 

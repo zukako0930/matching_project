@@ -15,9 +15,14 @@
     <%= form.label :name %>
     <%= form.text_field :name, id: :user_name %>
   </div>
-
-
-
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email%>
+  </div>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password%>
+  </div>
   <div class="field">
       <%= form.label :image %>
       <%= form.file_field :image %>
