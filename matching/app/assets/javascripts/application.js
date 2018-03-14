@@ -15,8 +15,9 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+//= require popper
 //= require bootstrap-sprockets
 
-$(document).ready(function(){
-    $('.dropdown-toggle').dropdown();
-});
+// $(document).ready(function(){
+//     $('.dropdown-toggle').dropdown();
+// });
