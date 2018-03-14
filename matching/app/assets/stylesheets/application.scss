@@ -23,6 +23,13 @@ img {
 	max-width: 100%;
 	height: auto;
 }
+
+li a:hover{
+	background-color: transparent;
+}
+ul a:hover{
+	background-color: transparent;
+}
 // // 背景画像をいっぱいに表示
 // div {
 //   background-size:cover;

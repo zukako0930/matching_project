@@ -1,10 +1,10 @@
 <!-- <p id="notice"><%= notice %></p> -->
+<div class="sample">
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<h1>Messages</h1>
+<br><br>
 <div class="row">
-
   <div class="container col-md-8"  style="background-color:#4BB1FF;">
     <%= form_with model: Message.new do |form| %>
       <div class="field">
@@ -57,7 +57,7 @@
         <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
         <a class="btn btn-success btn-block disabled" role="button">送信済</a>
         <% if MeetRequest.exists?(meet_request_user_id: @receive_user.id, meet_target_user_id: @current_user.id) %>
-          aaa
+          <div align="center">お互いに会いたいと思っているようです。<br>日程調整をしましょう。</div>
         <% end %>
         <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
       <% else %>
@@ -77,3 +77,4 @@
     </div>
   </div>
 </nav>
+</div>
