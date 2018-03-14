@@ -15,33 +15,36 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <% if @current_user %>
-            <%= link_to 'マイページ', user_path(@current_user), class: "nave-item nav-link" %>
-            <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nave-item nav-link" %>
+            <ul class="navbar-nav mr-auto">
+              <%= link_to 'マイページ', user_path(@current_user), class: "nave-item nav-link" %>
+              <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nave-item nav-link" %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  設定
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to 'プロフィールを編集', edit_user_path(@current_user), class: "dropdown-item" %>
+                  <a class="dropdown-item" href="#">お問い合わせ</a>
+                  <a class="dropdown-item" href="#">良縁報告</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', logout_path, method: :delete, class: "nave-item nav-link" %>
+              </li>
+            </ul>
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                設定
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to 'プロフィールを編集', edit_user_path(@current_user), class: "dropdown-item" %>
-                <a class="dropdown-item" href="#">お問い合わせ</a>
-                <a class="dropdown-item" href="#">良縁報告</a>
-              </div>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to 'ログアウト', logout_path, method: :delete, class: "nave-item nav-link" %>
-            </li>
-            <a class="nav-item nav-link disabled" href="#" style="color:Blue"><%=@current_user.name%>でログイン中</a>
+              <span class="navbar-text" style="color:Blue"><%=@current_user.name%>でログイン中</span>
           <% else %>
-            <form class="form-inline">
-              <%= link_to '新規登録', new_user_path, class: "btn btn-outline-success" %>
-            </form>
+            <ul class="navbar-nav mr-auto">
+            </ul>
+              
+              <form class="form-inline">
+                <%= link_to '新規登録', new_user_path, class: "btn btn-outline-success" %>
+              </form>
           <% end %>
-        </ul>
+        </div>
       </div>
     </nav>
 

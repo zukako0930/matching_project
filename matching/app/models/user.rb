@@ -36,4 +36,10 @@ mount_uploader :image, ImageUploader
                       .select { |r| requester_ids.include? r.meet_target_user_id }
                             .map { |r| r.meet_target_user }
   end
+
+  def meet_match?
+    to_flag = MeetRequest.exists?(meet_request_user_id: params[:send_id], meet_target_user_id: params[:receive_id])
+    from_flag = MeetRequest.exists?(meet_request_user_id: params[:receive_id], meet_target_user_id: params[:send_id])
+    return to_flag && from_flag
+  end
 end
