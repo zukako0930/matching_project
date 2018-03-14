@@ -1,7 +1,7 @@
+<h1></h1>
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<h1>Target Users</h1>
 <div class="container fluid">
 <div class = "row">
   <% @users.each do |user| %>

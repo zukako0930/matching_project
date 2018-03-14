@@ -7,9 +7,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="#">
-        <%= image_tag "papillon.svg", width: "30", height: "30",class:"d-inline-block align-top",alt:"" %>
+        <%= image_tag "papillon_yellow.svg", width: "30", height: "30",class:"d-inline-block align-top",alt:"" %>
         Papillon
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <% if @current_user %>
             <ul class="navbar-nav mr-auto active">
-              <%= link_to 'マイページ', user_path(@current_user), class: "nav-item nav-link" %>
-              <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nav-item nav-link" %>
+              <%= link_to 'マイページ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %>
+              <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;"%>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#FFC400;">
                   設定
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -31,11 +31,11 @@
                 </div>
               </li>
               <li class="nav-item">
-                <%= link_to 'ログアウト', logout_path, method: :delete, class: "nave-item nav-link" %>
+                <%= link_to 'ログアウト', logout_path, method: :delete, class: "nave-item nav-link", style:"color:#FFC400;"%>
               </li>
             </ul>
 
-              <span class="navbar-text" style="color:Blue"><%=@current_user.name%>でログイン中</span>
+              <span class="navbar-text" style="color:#FFC400;"><%=@current_user.name%>でログイン中</span>
           <% else %>
             <ul class="navbar-nav mr-auto">
             </ul>

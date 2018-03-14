@@ -17,18 +17,24 @@
 // @import "bootstrap-sprockets";
 @import "font-awesome";
 //固定したバーに隠れる部分をなくすため
-body { padding-top: 60px; }
+body {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
 // imgタグの設定
 img {
 	max-width: 100%;
 	height: auto;
 }
 
-li a:hover{
+nav a:hover{
 	background-color: transparent;
 }
-ul a:hover{
-	background-color: transparent;
+
+nav {
+	// background-color: #953AB9;
+	background-size:cover;
+	background-image: url("bar_back.jpg");
 }
 // // 背景画像をいっぱいに表示
 // div {
