@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180305074737) do
+ActiveRecord::Schema.define(version: 20180314051321) do
 
   create_table "match_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "request_user_id"
     t.string "integer"
     t.string "target_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meet_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "meet_request_user_id"
+    t.integer "meet_target_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,9 +39,10 @@ ActiveRecord::Schema.define(version: 20180305074737) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.string "password_digest"
     t.string "email"
+    t.string "image", default: "default.svg"
+    t.text "selfintro"
   end
 
 end

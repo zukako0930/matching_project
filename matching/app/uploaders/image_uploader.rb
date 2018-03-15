@@ -3,7 +3,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   #画像の上限を200pxにする
-  process :resize_to_limit => [200,200]
+  process :resize_to_fill => [200,200,gravity = ::Magick::CenterGravity]
 
   #保存形式をJPGにする
   process :convert => 'jpg'
@@ -23,7 +23,9 @@ class ImageUploader < CarrierWave::Uploader::Base
     super.chomp(File.extname(super))+'.jpg' if original_filename.present?
   end
 
-
+  def default_url
+    "default.jpeg"
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

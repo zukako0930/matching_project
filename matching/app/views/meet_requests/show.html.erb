@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request user:</strong>
+  <%= @meet_request.meet_request_user_id %>
+</p>
+
+<p>
+  <strong>Target user:</strong>
+  <%= @meet_request.meet_target_user_id %>
+</p>
+
+<%= link_to 'Edit', edit_meet_request_path(@meet_request) %> |
+<%= link_to 'Back', meet_requests_path %>

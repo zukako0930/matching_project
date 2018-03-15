@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:profile,:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
+  def profile
+  end
   def index
     @users = User.all
   end
@@ -24,16 +26,20 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
+    else
+      redirect_to action: "new", notice:"有効な値を入力してください"
     end
+    # respond_to do |format|
+    #   if @user.save
+    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /users/1
@@ -60,20 +66,15 @@ class UsersController < ApplicationController
     end
   end
 
-  #自分以外のユーザを表示：他人にいいね送るため
-  def target_user_list
-    @current_user = User.find_by(id: session[:user_id])
-    @users = User.where("id != ?",@current_user.id)
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      @current_user = User.find_by(id: session[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :string, :image)
+      params.require(:user).permit(:name, :string, :image, :email, :password, :selfintro)
     end
 end

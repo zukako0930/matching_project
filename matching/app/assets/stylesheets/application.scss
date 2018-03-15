@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+// @import "bootstrap-sprockets";
+@import "font-awesome";
+//固定したバーに隠れる部分をなくすため
+body {
+	padding-top: 55px;
+	padding-bottom: 50px;
+}
+// imgタグの設定
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+nav a:hover{
+	background-color: transparent;
+}
+
+nav {
+	// background-color: #953AB9;
+	background-size:cover;
+	background-image: url("bar_back.jpg");
+}
+// // 背景画像をいっぱいに表示
+// div {
+//   background-size:cover;
+//   // max-width: 100%;
+//   // max-height: 100%;
+//   background-position: top left;
+//   background-repeat:no-repeat;
+// }

@@ -1,58 +1,94 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Messages</h1>
-
-
-<%= form_with model: Message.new do |form| %>
-  <div class="field">
-    <% form.label :body %>
-    <%= form.text_field :body, id: :message_body %>
-  </div>
-  <div class="field">
-    <%= form.hidden_field :send_user_id, :value => @send_user.id %>
-    <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
-  </div>
-  <div class="actions">
-    <%= form.submit "送信"%>
-  </div>
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="sample">
+<% if params[:notice] %>
+  <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-
-<table>
-  <thead>
-    <tr>
-      <!--th>Body</th>
-      <th>Send user</th>
-      <th>Receive user</th-->
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @messages.reverse_each do |message| %>
-      <tr>
-        <% if message.send_user_id == @send_user.id %>
-          <td><%= @send_user.name %></td>
-          <td><%= message.body %></td>
-          <td><%= message.created_at %></td>
-        <% else message.receive_user_id == @send_user.id %>
-          <td><%= @receive_user.name %></td>
-          <td><%= message.body %></td>
-          <td><%= message.created_at %></td>
-        <% end %>
-        <td><% message.send_user_id %></td>
-        <td><% message.receive_user_id %></td>
-        <td><% link_to 'Show', message %></td>
-        <td><% link_to 'Edit', edit_message_path(message) %></td>
-        <td><% link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<br><br>
+<div class="row">
+  <div class="container col-md-8"  style="background-color:#4BB1FF;">
+    <%= form_with model: Message.new do |form| %>
+      <div class="field">
+        <%= form.hidden_field :send_user_id, :value => @current_user.id %>
+        <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend"><span class="input-group-text">To: <%= @receive_user.name%></span></div>
+        <% form.label :body %>
+        <%= form.text_field :body, id: :message_body, class: "form-control", placeholder: "想いを伝えよう。" %>
+        <div class="input-group-append">
+          <%= form.submit "送信",class: "btn btn-primary" %>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+    <!-- <%= form_with model: Message.new do |form| %>
+      <div class="field">
+        <% form.label :body %>
+        <%= form.text_field :body%>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :send_user_id, :value => @current_user.id %>
+        <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
+      </div>
+      <div class="actions">
+        <%= form.submit "送信"%>
+      </div>
+    <% end %> -->
 
-<br>
+    <% if @messages %>
+      <% @messages.reverse_each do |message| %>
+          <div class="comment_area">
+            <div ng-repeat="data in hoge.chatdata">
+              <div class="row">
+                <div class="col-md-12">
+                  <% if message.send_user_id == @current_user.id %>
+                    <div class="pull-right">
+                      <%= image_tag @current_user.image, :size => "25x25" ,class: "rounded-circle" %>
+                      <%= @current_user.name %>
+                    </div>
+                    <p class="right_balloon"><%= message.body %></p>
+                  <% else message.receive_user_id == @current_user.id %>
+                    <span ng-if="data.type == 'chat'">
+                      <div class="pull-left">
+                        <%= image_tag @receive_user.image, :size => "25x25" ,class: "rounded-circle" %>
+                        <%= @receive_user.name %>
+                      </div>
+                      <p class="left_balloon"><%= message.body %></p>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="container col-md-2">
+    <p align="center">会いたい！ボタン</p>
+    <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
+      <%= form.hidden_field :meet_request_user_id, :value => @current_user.id%>
+      <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id%>
+      <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
+        <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
+        <a class="btn btn-success btn-block disabled" role="button">送信済</a>
+        <% if MeetRequest.exists?(meet_request_user_id: @receive_user.id, meet_target_user_id: @current_user.id) %>
+          <div align="center">お互いに会いたいと思っているようです。<br>日程調整をしましょう。</div>
+        <% end %>
+        <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
+      <% else %>
+        <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
+      <% end %>
+    <% end %>
 
-
-
-
-
-<% link_to 'New Message', new_message_path %>
+  </div>
+</div>
+<nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
+  <div class="container">
+    <div class="container col-md-1 col-md-offset-6">
+      <%=image_tag @receive_user.image, :size => "25x25", class:"rounded-circle"%>
+      <span class="navbar-text" href="#" style="color:White">
+        <%= @receive_user.name %>
+      </span>
+    </div>
+  </div>
+</nav>
+</div>

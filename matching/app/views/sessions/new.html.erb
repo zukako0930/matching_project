@@ -1,21 +1,41 @@
-<!-- <h1>Sessions#new</h1> -->
-<!-- <p>Find me in app/views/sessions/new.html.erb</p> -->
-<p style="color:Red"><%= @error %></p>
-<% provide(:title, "Log in") %>
-<h1>Log in</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
-
+<div class="container">
+<% if params[:notice] %>
+  <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
+<% end %>
+<% if @error %>
+  <div class="alert alert-danger" role="alert">
+    <%= @error %>
   </div>
+<% end %>
+</div>
+<div style="background-image:url(<%= asset_path "yoshi.png" %>); height:700px; "/>
+<% provide(:title, "Log in") %>
+<div class="container-fluid">
+<div class="row">
+  <!-- <div class="jumbotron"> -->
+  <div class="container col-md-2">
+    <!-- <div style="background-image:url(<%= asset_path "yoshi2.jpg" %>)" /> -->
+    <!-- <img src="assets/yoshi2.jpg" class="img-responsive"> -->
+  </div>
+<!-- </div> -->
+  <div class="container col-md-4">
+    <!-- <img src="assets/sub.png"> -->
+    <br><br><br><br><br><br><br><br>
+    <%= form_for(:session, url: login_path) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control', :placeholder => "LINE@example.com"%>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
+    <% end %>
+    <br>
+  </div>
+  <!-- <div class="container col-md-4">
+  </div> -->
+</div>
+</div>
 </div>

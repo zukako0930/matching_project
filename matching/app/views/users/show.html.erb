@@ -1,24 +1,21 @@
-<p id="notice"><%= notice %></p>
-current_user_id:<%= session[:user_id] %>
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>matchers:</strong>
-  <% @user.matchers.each do |matcher| %>
-    <%= link_to matcher.name, messages_path(receive_id: matcher.id, send_id: @user.id) %>
-  <% end %>
-</p>
-
-<p>
-  <strong>images:</strong>
-  <% if @user.image %>
-    <%= image_tag @user.image %>
-  <% end %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<!-- <p id="notice"><%= notice %></p> -->
+<div class="container fluid">
+  <h1></h1>
+  <strong>マッチした相手にメッセージを送る</strong><br>
+  <div class = "row">
+    <% @user.matchers.each do |matcher| %>
+      <div container>
+        <div class="card text-center" style="width: 13rem;">
+          <%= image_tag matcher.image, class: "card-img-top", alt: "Card image cap" %>
+          <div class="card-body">
+            <h5 class="card-title"><%= matcher.name %></h5>
+            <p class="card-text"></p>
+            <%= link_to messages_path(receive_id: matcher.id, send_id: @user.id) do %>
+              <button type="button" class="btn btn-primary">メッセージを送る</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

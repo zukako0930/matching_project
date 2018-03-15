@@ -15,5 +15,9 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
-  # controllerから呼び出せるようにする
+  # ログアウトの実装
+  def log_out
+    session.delete(:user_id)
+    @current_user = nil
+  end
 end

@@ -1,24 +1,17 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+# アクセスできない
+  def check
+    @messages = Message.all
+  end
+
   # GET /messages
   # GET /messages.json
   def index
-    if flash[:send_id]
-      send_id = flash[:send_id]
-      receive_id = flash[:receive_id]
-    else
-      send_id = params[:send_id]
-      receive_id = params[:receive_id]
-    end
-
-    if params[:send_id]
-      @messages = Message.talk(params[:receive_id], params[:send_id])
-      @send_user = User.find(params[:send_id])
-      @receive_user = User.find(params[:receive_id])
-    else
-      @messages = Message.all
-    end
+    @current_user = User.find_by(id: session[:user_id])
+    @messages = Message.talk(params[:receive_id], @current_user.id)
+    @receive_user = User.find(params[:receive_id])
   end
 
   # GET /messages/1
@@ -41,16 +34,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.save
     @receive_user = User.find(@message.receive_user_id)
-    @send_user = User.find(@message.send_user_id)
-
-    redirect_to action: "index", :send_id => @message.send_user_id, :receive_id => @message.receive_user_id
+    redirect_to action: "index",:receive_id => @message.receive_user_id
 
 #    respond_to do |format|
-#        @send_user = User.find(@message.send_user_id)
-  #      @receive_user = User.find(@message.receive_user_id)
-  #      redirect_to action: "index"
-  #      #format.html　{render :action => "index" ,:flash => {:send_id => @message.send_user_id, :receive_id => @message.receive_user_id  } }
-  #      #format.json { render :index, status: :created, location: @message }
   #      #format.html { redirect_to @message, notice: 'Message was successfully created.' }
   #      #format.json { render :show, status: :created, location: @message }
   #    else
