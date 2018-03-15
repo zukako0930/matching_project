@@ -20,6 +20,20 @@
         </div>
       </div>
     <% end %>
+    <!-- <%= form_with model: Message.new do |form| %>
+      <div class="field">
+        <% form.label :body %>
+        <%= form.text_field :body%>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :send_user_id, :value => @current_user.id %>
+        <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
+      </div>
+      <div class="actions">
+        <%= form.submit "送信"%>
+      </div>
+    <% end %> -->
+
     <% if @messages %>
       <% @messages.reverse_each do |message| %>
           <div class="comment_area">
