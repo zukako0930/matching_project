@@ -62,7 +62,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="container col-md-2">
+  <div class="container col-md-3">
     <p align="center">会いたい！ボタン</p>
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
       <%= form.hidden_field :meet_request_user_id, :value => @current_user.id%>
@@ -71,7 +71,8 @@
         <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
         <a class="btn btn-success btn-block disabled" role="button">送信済</a>
         <% if MeetRequest.exists?(meet_request_user_id: @receive_user.id, meet_target_user_id: @current_user.id) %>
-          <div align="center">お互いに会いたいと思っているようです。<br>日程調整をしましょう。</div>
+          <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
+          <%= render :partial => "date_schedules/form", :locals => {date_schedule:DateSchedule.new} %>
         <% end %>
         <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
       <% else %>
@@ -83,7 +84,7 @@
 </div>
 <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
   <div class="container">
-    <div class="container col-md-1 col-md-offset-6">
+    <div class="container col-md-1 col-md-offset-5">
       <%=image_tag @receive_user.image, :size => "25x25", class:"rounded-circle"%>
       <span class="navbar-text" href="#" style="color:White">
         <%= @receive_user.name %>

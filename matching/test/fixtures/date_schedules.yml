@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_sug_user_id: 1
+  date_tar_user_id: 1
+  date_of_meet: 2018-03-15 17:29:07
+  confirm: false
+
+two:
+  date_sug_user_id: 1
+  date_tar_user_id: 1
+  date_of_meet: 2018-03-15 17:29:07
+  confirm: false

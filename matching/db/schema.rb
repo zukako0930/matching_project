@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314051321) do
+ActiveRecord::Schema.define(version: 20180315082907) do
+
+  create_table "date_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "date_sug_user_id"
+    t.integer "date_tar_user_id"
+    t.datetime "date_of_meet"
+    t.boolean "confirm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "match_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "request_user_id"
