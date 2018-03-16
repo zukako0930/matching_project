@@ -1,21 +1,23 @@
 <!-- <p id="notice"><%= notice %></p> -->
-<div class="container fluid">
   <h1></h1>
-  <strong>マッチした相手にメッセージを送る</strong><br>
   <div class = "row">
-    <% @user.matchers.each do |matcher| %>
-      <div container>
-        <div class="card text-center" style="width: 13rem;">
-          <%= image_tag matcher.image, class: "card-img-top", alt: "Card image cap" %>
-          <div class="card-body">
-            <h5 class="card-title"><%= matcher.name %></h5>
-            <p class="card-text"></p>
-            <%= link_to messages_path(receive_id: matcher.id, send_id: @user.id) do %>
-              <button type="button" class="btn btn-primary">メッセージを送る</button>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <div class="container col-md-4">
+    </div>
+    <div class="container col-md-4">
+      <strong>マッチした相手にメッセージを送る</strong><br>
+      <table class="newest_message">
+        <% @user.matchers.each do |matcher| %>
+          <tr>
+            <th><%= link_to image_tag(matcher.image,class:'rounded-circle',size:"40x40"), controller: :users, action: :profile, id:matcher %></th>
+            <td><%= matcher.name %></td>
+            <% newest_message = Message.where(send_user_id:@current_user,receive_user_id:matcher).or(Message.where(send_user_id:matcher,receive_user_id:@current_user)).last%>
+            <td>
+             <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <div class="container col-md-4">
   </div>
-</div>
+  </div>
