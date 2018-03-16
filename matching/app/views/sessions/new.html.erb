@@ -1,4 +1,3 @@
-<div class="container">
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
@@ -7,7 +6,6 @@
     <%= @error %>
   </div>
 <% end %>
-</div>
 <!-- <div style="background-image:url(<%= asset_path "yoshi.png" %>); height:700px; "/> -->
 <% provide(:title, "Log in") %>
 <div class="row">

@@ -38,6 +38,10 @@ nav {
 	background-size:cover;
 	background-image: url("bar_back.jpg");
 }
+
+body a:hover{
+	background-color: transparent;
+}
 // // 背景画像をいっぱいに表示
 // div {
 //   background-size:cover;

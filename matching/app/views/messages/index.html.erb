@@ -35,7 +35,8 @@
                   <% else message.receive_user_id == @current_user.id %>
                     <span ng-if="data.type == 'chat'">
                       <div class="pull-left">
-                        <%= image_tag @receive_user.image, :size => "25x25" ,class: "rounded-circle" %>
+                        <%= link_to image_tag(@receive_user.image, class: "rounded-circle", size:"25x25"), controller: :users, action: :profile, id:@receive_user%>
+                        <!-- <%= image_tag @receive_user.image, :size => "25x25" ,class: "rounded-circle" %> -->
                         <%= @receive_user.name %>
                       </div>
                       <p class="left_balloon"><%= message.body %></p>

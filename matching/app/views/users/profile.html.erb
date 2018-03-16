@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
 <!-- <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p> -->
-<p>
-  <strong>名前：</strong>
-  <%= @user.name %>
-</p>
+<div class="container">
+  <p>
+    <strong>プロフィール画像</strong><br>
+    <% if @user.image %>
+      <%= image_tag @user.image %>
+    <% end %>
+  </p>
 
-<p>
-  <strong>プロフィール画像</strong><br>
-  <% if @user.image %>
-    <%= image_tag @user.image %>
-  <% end %>
-</p>
+  <p>
+    <%= @user.name %><br>
+    <strong>プロフィール文</strong><br>
+    <% if @user.prof %>
+      <%= @user.prof %>
+    <% end %>
+  </p>
 
-<p>
-  <strong>プロフィール文</strong><br>
-  <% if @user.selfintro %>
-    <%= @user.selfintro %>
-  <% end %>
-</p>
-
-<%= link_to '戻る', {controller: :match_requests, action: :target_user_list} %>
-<!-- <%= link_to 'Back', users_path %> -->
+  <%= link_to '戻る', {controller: :match_requests, action: :target_user_list}, class: "btn btn-primary" %>
+  <!-- <%= link_to 'Back', users_path %> -->
+</div>
