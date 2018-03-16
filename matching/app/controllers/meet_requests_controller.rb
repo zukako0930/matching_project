@@ -12,6 +12,8 @@ class MeetRequestsController < ApplicationController
   def show
   end
 
+
+
   # GET /meet_requests/new
   def new
     @meet_request = MeetRequest.new

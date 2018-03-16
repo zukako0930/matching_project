@@ -1,0 +1,2 @@
+class DateSchedule < ApplicationRecord
+end

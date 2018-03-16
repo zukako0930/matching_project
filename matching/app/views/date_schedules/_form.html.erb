@@ -1,0 +1,25 @@
+<%= form_with(model: date_schedule, local: true) do |form| %>
+  <% if date_schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(date_schedule.errors.count, "error") %> prohibited this date_schedule from being saved:</h2>
+
+      <ul>
+      <% date_schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= @current_user.id %>
+  <%= @receive_user.id %>
+  <div class="field">
+    <!-- <%= form.label :date_of_meet %> -->
+    <%= form.hidden_field :date_sug_user_id, :value => date_sug_user_id%>
+    <%= form.hidden_field :date_tar_user_id, :value => date_tar_user_id%>
+    <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker'%>
+  </div>
+  <!-- このサブミットで予定を提案するメッセージを飛ばす -->
+  <div class="actions">
+    <%= form.submit '提案する', class: "btn btn-primary"%>
+  </div>
+<% end %>

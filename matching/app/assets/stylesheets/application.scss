@@ -10,6 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+
+ *= require jquery-ui/datepicker
  *= require_tree .
  *= require_self
  */
@@ -35,6 +37,10 @@ nav {
 	// background-color: #953AB9;
 	background-size:cover;
 	background-image: url("bar_back.jpg");
+}
+
+body a:hover{
+	background-color: transparent;
 }
 // // 背景画像をいっぱいに表示
 // div {

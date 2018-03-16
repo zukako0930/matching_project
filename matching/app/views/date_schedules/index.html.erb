@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Date Schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date sug user</th>
+      <th>Date tar user</th>
+      <th>Date of meet</th>
+      <th>Confirm</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @date_schedules.each do |date_schedule| %>
+      <tr>
+        <td><%= date_schedule.date_sug_user_id %></td>
+        <td><%= date_schedule.date_tar_user_id %></td>
+        <td><%= date_schedule.date_of_meet %></td>
+        <td><%= date_schedule.confirm %></td>
+        <td><%= link_to 'Show', date_schedule %></td>
+        <td><%= link_to 'Edit', edit_date_schedule_path(date_schedule) %></td>
+        <td><%= link_to 'Destroy', date_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Date Schedule', new_date_schedule_path %>

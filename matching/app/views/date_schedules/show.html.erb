@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date sug user:</strong>
+  <%= @date_schedule.date_sug_user_id %>
+</p>
+
+<p>
+  <strong>Date tar user:</strong>
+  <%= @date_schedule.date_tar_user_id %>
+</p>
+
+<p>
+  <strong>Date of meet:</strong>
+  <%= @date_schedule.date_of_meet %>
+</p>
+
+<p>
+  <strong>Confirm:</strong>
+  <%= @date_schedule.confirm %>
+</p>
+
+<%= link_to 'Edit', edit_date_schedule_path(@date_schedule) %> |
+<%= link_to 'Back', date_schedules_path %>
