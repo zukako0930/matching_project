@@ -10,10 +10,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password]) then
       # sessions_helperに定義した関数
       log_in user
-      # user_url(user)へのルーティングと同義
-      redirect_to user
-    # ユーザが見つからなければ
+      redirect_to match_requests_target_user_list_path
     else
+      # ユーザが見つからなければ
       #エラーメッセージを出してログインホームへ
       # flash[:error] = 'Invalid email/password combination'
       @error = "メールアドレスかパスワードが間違っています。"

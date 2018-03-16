@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <% if @current_user %>
             <ul class="navbar-nav mr-auto active">
-              <%= link_to 'マイページ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %>
+              <%= link_to 'メッセージ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %>
               <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;"%>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#FFC400;">

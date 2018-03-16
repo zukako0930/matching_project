@@ -8,34 +8,31 @@
   </div>
 <% end %>
 </div>
-<div style="background-image:url(<%= asset_path "yoshi.png" %>); height:700px; "/>
+<!-- <div style="background-image:url(<%= asset_path "yoshi.png" %>); height:700px; "/> -->
 <% provide(:title, "Log in") %>
-<div class="container-fluid">
 <div class="row">
-  <!-- <div class="jumbotron"> -->
-  <div class="container col-md-2">
-    <!-- <div style="background-image:url(<%= asset_path "yoshi2.jpg" %>)" /> -->
-    <!-- <img src="assets/yoshi2.jpg" class="img-responsive"> -->
+  <div class="container col-md-6">
+    <%= image_tag 'yoshi.jpg'%>
   </div>
-<!-- </div> -->
-  <div class="container col-md-4">
-    <!-- <img src="assets/sub.png"> -->
-    <br><br><br><br><br><br><br><br>
-    <%= form_for(:session, url: login_path) do |f| %>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control', :placeholder => "LINE@example.com"%>
-      </div>
-      <div class="field">
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
-    <% end %>
+  <div class="container col-md-6">
+    <div class="row">
+    <!-- <br><br><br><br><br><br><br><br> -->
+    <div class="container col-md-6">
+      <%= image_tag 'title2.png'%>
+      <%= form_for(:session, url: login_path) do |f| %>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control', :placeholder => "LINE@example.com"%>
+        </div>
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
+      <% end %>
+  </div>
     <br>
   </div>
-  <!-- <div class="container col-md-4">
-  </div> -->
-</div>
+  </div>
 </div>
 </div>

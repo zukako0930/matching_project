@@ -10,28 +10,16 @@
       </ul>
     </div>
   <% end %>
-
-  <!-- <div class="field">
-    <%= form.label :date_sug_user_id %>
-    <%= form.number_field :date_sug_user_id, id: :date_schedule_date_sug_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_tar_user_id %>
-    <%= form.number_field :date_tar_user_id, id: :date_schedule_date_tar_user_id %>
-  </div> -->
-
+  <%= @current_user.id %>
+  <%= @receive_user.id %>
   <div class="field">
     <!-- <%= form.label :date_of_meet %> -->
+    <%= form.hidden_field :date_sug_user_id, :value => date_sug_user_id%>
+    <%= form.hidden_field :date_tar_user_id, :value => date_tar_user_id%>
     <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker'%>
   </div>
-
-  <!-- <div class="field">
-    <%= form.label :confirm %>
-    <%= form.check_box :confirm, id: :date_schedule_confirm %>
-  </div> -->
-
-  <!-- <div class="actions"> -->
+  <!-- このサブミットで予定を提案するメッセージを飛ばす -->
+  <div class="actions">
     <%= form.submit '提案する', class: "btn btn-primary"%>
-  <!-- </div> -->
+  </div>
 <% end %>

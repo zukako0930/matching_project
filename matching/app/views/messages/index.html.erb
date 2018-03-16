@@ -20,20 +20,6 @@
         </div>
       </div>
     <% end %>
-    <!-- <%= form_with model: Message.new do |form| %>
-      <div class="field">
-        <% form.label :body %>
-        <%= form.text_field :body%>
-      </div>
-      <div class="field">
-        <%= form.hidden_field :send_user_id, :value => @current_user.id %>
-        <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
-      </div>
-      <div class="actions">
-        <%= form.submit "送信"%>
-      </div>
-    <% end %> -->
-
     <% if @messages %>
       <% @messages.reverse_each do |message| %>
           <div class="comment_area">
@@ -68,18 +54,16 @@
       <%= form.hidden_field :meet_request_user_id, :value => @current_user.id%>
       <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id%>
       <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
-        <!-- <a class="disabled" role="button"><%= form.submit '会いたい！', class: "btn btn-success disabled"%></a> -->
         <a class="btn btn-success btn-block disabled" role="button">送信済</a>
-        <% if MeetRequest.exists?(meet_request_user_id: @receive_user.id, meet_target_user_id: @current_user.id) %>
-          <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
-          <%= render :partial => "date_schedules/form", :locals => {date_schedule:DateSchedule.new} %>
-        <% end %>
-        <!-- <button type="button" class="btn btn-success btn-lg" disabled>送信済</button> -->
       <% else %>
         <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
       <% end %>
     <% end %>
-
+    <!-- リファクタ必須 -->
+    <% if @meet %>
+      <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
+      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
+    <% end %>
   </div>
 </div>
 <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
