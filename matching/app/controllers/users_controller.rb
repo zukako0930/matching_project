@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+
     if @user.save
       redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
     else

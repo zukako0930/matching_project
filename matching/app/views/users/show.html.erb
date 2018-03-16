@@ -1,11 +1,11 @@
 <!-- <p id="notice"><%= notice %></p> -->
   <h1></h1>
-  <div class = "row">
-    <div class="container col-md-4">
-    </div>
-    <div class="container col-md-4">
+  <!-- <div class = "row"> -->
+    <!-- <div class="container col-md-4">
+    </div> -->
+    <div class="container col-md-6 col-md-offset-3">
       <strong>マッチした相手にメッセージを送る</strong><br>
-      <table class="newest_message">
+      <table class="newest_message" style="width:100%">
         <% @user.matchers.each do |matcher| %>
           <tr>
             <th><%= link_to image_tag(matcher.image,class:'rounded-circle',size:"40x40"), controller: :users, action: :profile, id:matcher %></th>
@@ -22,6 +22,6 @@
         <% end %>
       </table>
     </div>
-  <div class="container col-md-4">
-  </div>
-  </div>
+  <!-- <div class="container col-md-4">
+  </div> -->
+  <!-- </div> -->
