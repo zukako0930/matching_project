@@ -52,9 +52,9 @@
   <div class="container col-md-3">
     <p align="center">会いたい！ボタン</p>
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
-      <%= form.hidden_field :meet_request_user_id, :value => @current_user.id%>
-      <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id%>
-      <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
+      <%= form.hidden_field :meet_request_user_id, :value => @current_user %>
+      <%= form.hidden_field :meet_target_user_id, :value => @receive_user %>
+      <% if MeetRequest.exists?(meet_request_user_id: @current_user, meet_target_user_id: @receive_user) %>
         <a class="btn btn-success btn-block disabled" role="button">送信済</a>
       <% else %>
         <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
@@ -63,17 +63,14 @@
     <!-- リファクタ必須 -->
     <% if @meet %>
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
-      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
+      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user,date_tar_user_id:@receive_user}%>
     <% end %>
   </div>
 </div>
-<nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A;">
-  <div class="container">
-    <div class="container col-md-1 col-md-offset-5">
-      <%=image_tag @receive_user.image, :size => "25x25", class:"rounded-circle"%>
-      <span class="navbar-text" href="#" style="color:White">
+<nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A; color:#ffa500;">
+    <div class="navbar-center">
+        <%= link_to image_tag(@receive_user.image, class: "rounded-circle", size:"25x25"), controller: :users, action: :profile, id:@receive_user %>
         <%= @receive_user.name %>
-      </span>
     </div>
   </div>
 </nav>

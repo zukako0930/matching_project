@@ -12,7 +12,11 @@
             <td><%= matcher.name %></td>
             <% newest_message = Message.where(send_user_id:@current_user,receive_user_id:matcher).or(Message.where(send_user_id:matcher,receive_user_id:@current_user)).last%>
             <td>
-             <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+              <% if newest_message%>
+                <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+              <% else %>
+                <%= link_to ' ', messages_path(receive_id: matcher.id, send_id: @user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+              <% end %>
             </td>
           </tr>
         <% end %>
