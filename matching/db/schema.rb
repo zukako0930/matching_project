@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180316032405) do
+ActiveRecord::Schema.define(version: 20180316084059) do
 
   create_table "date_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "date_sug_user_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180316032405) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "email"
-    t.string "image", default: "default.svg"
+    t.string "image"
     t.text "prof"
   end
 

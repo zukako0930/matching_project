@@ -98,3 +98,12 @@ background-color: #F1FEFE;
 .new_line {
     white-space: pre-line;
 }
+
+@media (min-width: 768px){
+.navbar-center{
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    float:none;
+}
+}
