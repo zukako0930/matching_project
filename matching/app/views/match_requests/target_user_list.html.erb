@@ -2,19 +2,31 @@
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<div class="container fluid">
-<div class = "row">
-  <% @users.each do |user| %>
-      <%= form_for(MatchRequest.new) do |form| %>
-        <div class="container">
-          <%= link_to image_tag(user.image, class: "rounded-circle"), controller: :users, action: :profile,id: user%>
-          <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
-          <p><% if user.prof %><%= user.prof.truncate(20) %><% end %></p>
-          <%= form.hidden_field :request_user_id, :value => @current_user.id%>
-          <%= form.hidden_field :target_user_id, :value => user.id%>
-          <%= form.submit 'リクエストを送る', class: "btn btn-primary"%>
+<div class="container">
+  <div class = "row">
+    <% @users.each do |user| %>
+    <div class="container col-md-3">
+        <div class="top5" align="center">
+          <%= form_for(MatchRequest.new) do |form| %>
+            <div class="container">
+            <%= link_to image_tag(user.image, class: "rounded-circle", size:"150x150"), controller: :users, action: :profile,id: user%>
+            </div>
+            <div class="container">
+              <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
+              <p>
+                <% if user.prof %>
+                  <%= user.prof.truncate(15) %>
+                <% else %>
+                  <br>
+                <% end %>
+              </p>
+              <%= form.hidden_field :request_user_id, :value => @current_user.id%>
+              <%= form.hidden_field :target_user_id, :value => user.id%>
+              <%= form.submit 'リクエストを送る', class: "btn btn-primary"%>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-  <% end %>
-</div>
+      </div>
+    <% end %>
+  </div>
 </div>
