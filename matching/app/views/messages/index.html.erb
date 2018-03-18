@@ -20,6 +20,7 @@
         </div>
       </div>
     <% end %>
+    <div class="box_srcollbar">
     <% if @messages %>
       <% @messages.reverse_each do |message| %>
           <div class="comment_area">
@@ -48,6 +49,8 @@
           </div>
       <% end %>
     <% end %>
+    </div>
+
   </div>
   <div class="container col-md-3">
     <p align="center">会いたい！ボタン</p>
@@ -65,8 +68,10 @@
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
       <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user,date_tar_user_id:@receive_user}%>
     <% end %>
+
   </div>
 </div>
+
 <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A; color:#ffa500;">
     <div class="navbar-center">
         <%= link_to image_tag(@receive_user.image, class: "rounded-circle", size:"25x25"), controller: :users, action: :profile, id:@receive_user %>
