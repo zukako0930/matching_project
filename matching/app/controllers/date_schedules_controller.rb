@@ -24,17 +24,25 @@ class DateSchedulesController < ApplicationController
   # POST /date_schedules
   # POST /date_schedules.json
   def create
+    @current_user = User.find_by(id: session[:user_id])
     @date_schedule = DateSchedule.new(date_schedule_params)
+    @receive_user = User.find(@date_schedule.date_tar_user_id)
 
-    respond_to do |format|
-      if @date_schedule.save
-        format.html { redirect_to @date_schedule, notice: 'Date schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @date_schedule }
-      else
-        format.html { render :new }
-        format.json { render json: @date_schedule.errors, status: :unprocessable_entity }
-      end
+    if @date_schedule.save
+      Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:@date_schedule.date_of_meet)
+      redirect_to controller:'messages', action:'index',:receive_id => @receive_user
+    else
+      render :new
     end
+    # respond_to do |format|
+    #   if @date_schedule.save
+    #     format.html { redirect_to @date_schedule, notice: 'Date schedule was successfully created.' }
+    #     format.json { render :show, status: :created, location: @date_schedule }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @date_schedule.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /date_schedules/1

@@ -13,6 +13,8 @@ class MessagesController < ApplicationController
     @messages = Message.talk(params[:receive_id], @current_user.id)
     @receive_user = User.find(params[:receive_id])
     @meet = MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: params[:receive_id])&& MeetRequest.exists?(meet_request_user_id: params[:receive_id], meet_target_user_id: @current_user.id)
+    @sug_schedules = DateSchedule.where(date_sug_user_id: @current_user,date_tar_user_id: @receive_user)
+    @sugged_schedules = DateSchedule.where(date_sug_user_id: @receive_user,date_tar_user_id: @current_user)
   end
 
   # GET /messages/1

@@ -55,9 +55,9 @@
   <div class="container col-md-3">
     <p align="center">会いたい！ボタン</p>
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
-      <%= form.hidden_field :meet_request_user_id, :value => @current_user %>
-      <%= form.hidden_field :meet_target_user_id, :value => @receive_user %>
-      <% if MeetRequest.exists?(meet_request_user_id: @current_user, meet_target_user_id: @receive_user) %>
+      <%= form.hidden_field :meet_request_user_id, :value => @current_user.id %>
+      <%= form.hidden_field :meet_target_user_id, :value => @receive_user.id %>
+      <% if MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id) %>
         <a class="btn btn-success btn-block disabled" role="button">送信済</a>
       <% else %>
         <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
@@ -66,7 +66,21 @@
     <!-- リファクタ必須 -->
     <% if @meet %>
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
-      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user,date_tar_user_id:@receive_user}%>
+      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
+    <% end %>
+    
+    <strong>提案した予定</strong>
+    <% if @sug_schedules%>
+      <%= @sug_schedules.reverse_each do |sug_schedule|%>
+        <%= sug_schedule.date_of_meet%>
+      <% end %>
+    <% end %>
+
+    <strong>提案された予定</strong>
+    <% if @sugged_schedules%>
+      <%= @sugged_schedules.reverse_each do |sugged_schedule|%>
+        <%= sugged_schedule.date_of_meet%>
+      <% end %>
     <% end %>
 
   </div>
