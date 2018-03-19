@@ -27,9 +27,9 @@ class DateSchedulesController < ApplicationController
     @current_user = User.find_by(id: session[:user_id])
     @date_schedule = DateSchedule.new(date_schedule_params)
     @receive_user = User.find(@date_schedule.date_tar_user_id)
-
+    message_body = "#{@date_schedule.date_of_meet.strftime("%Y年%m月%d日")}"
     if @date_schedule.save
-      Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:@date_schedule.date_of_meet)
+      Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}を提案しました。")
       redirect_to controller:'messages', action:'index',:receive_id => @receive_user
     else
       render :new
@@ -62,16 +62,21 @@ class DateSchedulesController < ApplicationController
   # DELETE /date_schedules/1
   # DELETE /date_schedules/1.json
   def destroy
+    @receive_user = User.find(@date_schedule.date_tar_user_id)
+    message_body = "#{@date_schedule.date_of_meet.strftime("%Y年%m月%d日")}"
+    Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}の提案を取り消しました。")
     @date_schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to date_schedules_url, notice: 'Date schedule was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to controller: "messages", action:"index", notice:"予定を取り消しました。",:receive_id => @receive_user
+    # respond_to do |format|
+    #   format.html { redirect_to date_schedules_url, notice: 'Date schedule was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_date_schedule
+      @current_user = User.find_by(id: session[:user_id])
       @date_schedule = DateSchedule.find(params[:id])
     end
 
