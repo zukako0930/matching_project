@@ -4,8 +4,8 @@
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
 <br><br>
-<div class="row">
-  <div class="container col-md-8"  style="background-color:#4BB1FF;">
+<div class="row" style="padding:2%;">
+  <div class="container col-md-7"  style="background-color:#4BB1FF;">
     <%= form_with model: Message.new do |form| %>
       <div class="field">
         <%= form.hidden_field :send_user_id, :value => @current_user.id %>
@@ -50,9 +50,9 @@
       <% end %>
     <% end %>
     </div>
-
   </div>
-  <div class="container col-md-3">
+  <div class="container col-md-4">
+    <div class="box">
     <p align="center">会いたい！ボタン</p>
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
       <%= form.hidden_field :meet_request_user_id, :value => @current_user.id %>
@@ -63,30 +63,35 @@
         <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
       <% end %>
     <% end %>
-    <!-- リファクタ必須 -->
+    
     <% if @meet %>
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
       <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
     <% end %>
 
     <strong>提案した予定</strong><br>
-    <% if @sug_schedules %>
+    <% if @sug_schedules.exists? %>
       <% @sug_schedules.reverse_each do |sug_schedule|%>
         <%= sug_schedule.date_of_meet.strftime("%Y年%m月%d日")%>
         <%= link_to '取消', date_schedule_path(sug_schedule.id), method: :delete,class:"btn btn-block btn-success"%><br>
       <% end %>
+    <% else %>
+      <p style="color:darkgray;">提案した予定はありません。</p>
     <% end %>
 
     <strong>提案された予定</strong><br>
-    <% if @sugged_schedules %>
+    <% if @sugged_schedules.exists? %>
       <% @sugged_schedules.reverse_each do |sugged_schedule|%>
         <%= sugged_schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
-        <%= link_to '確定', date_schedule_path(sugged_schedule)%>
-        <%= link_to '確定', date_schedule_path(sugged_schedule),params:{confirm: true},method: :put,class:"btn btn-block btn-primary"%>
-
+        <%= form_for(DateSchedule.find_by(id:sugged_schedule.id)) do |form|%>
+          <%= form.hidden_field :confirm, :value => true %>
+          <%= form.submit "確定", class:"btn btn-block btn-primary" %>
+        <% end %>
       <% end %>
+    <% else %>
+      <p style="color:darkgray;">提案された予定はありません。</p>
     <% end %>
-
+  </div>
   </div>
 </div>
 
