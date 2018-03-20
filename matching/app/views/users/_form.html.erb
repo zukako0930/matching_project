@@ -28,29 +28,29 @@
   <p class="lead">現在の画像</p>
   <div class="row">
     <div class="container col-md-3">
-      <div class="field">
-          <%= image_tag user.image %>
+      <div class="field" style="padding:2%">
+          <%= image_tag user.image, class:"rounded", style:"padding:2%" %>
           <%= form.file_field :image, class:"filestyle", "data-buttonText": "ファイル選択"
  %>
       </div>
     </div>
     <div class="container col-md-3">
-      <div class="field">
-          <%= image_tag user.image2 %>
+      <div class="field" style="padding:2%">
+          <%= image_tag user.image2, class:"rounded", style:"padding:2%"%>
           <%= form.file_field :image2, class:"filestyle", "data-buttonText": "ファイル選択"
  %>
       </div>
     </div>
     <div class="container col-md-3">
-      <div class="field">
-          <%= image_tag user.image3 %>
+      <div class="field" style="padding:2%">
+          <%= image_tag user.image3, class:"rounded", style:"padding:2%"%>
           <%= form.file_field :image3, class:"filestyle", "data-buttonText": "ファイル選択"
  %>
       </div>
     </div>
     <div class="container col-md-3">
-      <div class="field">
-          <%= image_tag user.image4 %>
+      <div class="field" style="padding:2%">
+          <%= image_tag user.image4, class:"rounded", style:"padding:2%"%>
           <%= form.file_field :image4, class:"filestyle", "data-buttonText": "ファイル選択"
  %>
       </div>
@@ -65,8 +65,8 @@
   </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" align="right">
+    <%= form.submit '更新',class:"btn btn-primary"%>
   </div>
 
 
