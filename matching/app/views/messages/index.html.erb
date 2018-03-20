@@ -63,7 +63,7 @@
         <%= form.submit '会いたい！', class: "btn btn-block btn-success"%>
       <% end %>
     <% end %>
-    
+
     <% if @meet %>
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
       <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
