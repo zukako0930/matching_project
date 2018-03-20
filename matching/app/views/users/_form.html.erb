@@ -11,37 +11,63 @@
     </div>
   <% end %>
 
+<div class="container-fluid col-md-8">
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :user_name %>
+    <%= form.text_field :name, id: :user_name, class:"form-control" %>
   </div>
   <div class="field">
     <%= form.label :email %>
-    <%= form.email_field :email%>
+    <%= form.email_field :email,class:"form-control"%>
   </div>
-  <div class="field">
+  <!-- パスワードはベット変更の処理が必要 -->
+  <!-- <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password%>
+    <%= form.password_field :password,class:"form-control"%>
+  </div> -->
+  <p class="lead">現在の画像</p>
+  <div class="row">
+    <div class="container col-md-3">
+      <div class="field">
+          <%= image_tag user.image %>
+          <%= form.file_field :image, class:"filestyle", "data-buttonText": "ファイル選択"
+ %>
+      </div>
+    </div>
+    <div class="container col-md-3">
+      <div class="field">
+          <%= image_tag user.image2 %>
+          <%= form.file_field :image2, class:"filestyle", "data-buttonText": "ファイル選択"
+ %>
+      </div>
+    </div>
+    <div class="container col-md-3">
+      <div class="field">
+          <%= image_tag user.image3 %>
+          <%= form.file_field :image3, class:"filestyle", "data-buttonText": "ファイル選択"
+ %>
+      </div>
+    </div>
+    <div class="container col-md-3">
+      <div class="field">
+          <%= image_tag user.image4 %>
+          <%= form.file_field :image4, class:"filestyle", "data-buttonText": "ファイル選択"
+ %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-      <%= form.label :image %>
-      <%= form.file_field :image %>
-  </div>
-  <div class="field">
-      <%= form.label :image2 %>
-      <%= form.file_field :image2 %>
-  </div>
-
   <div class="form-group">
     <label for="self-introduciton">プロフィール</label>
     <!-- <%= form.text_area :selfintro do %> -->
     <!-- <textarea class="form-control" id="self-introduciton" rows="3"></textarea> -->
     <!-- <% end %> -->
-    <%= form.text_field :selfintro, class: "form-control", rows: "3"%>
+    <%= form.text_area :selfintro, class: "form-control", rows: "3"%>
   </div>
 
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
+
 <% end %>

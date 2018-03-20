@@ -4,6 +4,7 @@
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
 <br><br>
+<div class="container-fluid col-md-8">
 <div class="row" style="padding:2%;">
   <div class="container col-md-7"  style="background-color:#4BB1FF;border-radius: 15px;">
     <%= form_with model: Message.new do |form| %>
@@ -92,7 +93,7 @@
   </div>
   </div>
 </div>
-
+</div>
 <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A; color:#ffa500;">
     <div class="navbar-center">
         <%= link_to image_tag(@receive_user.image, class: "rounded-circle", size:"25x25"), controller: :users, action: :profile, id:@receive_user %>
