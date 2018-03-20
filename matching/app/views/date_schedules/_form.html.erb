@@ -1,3 +1,4 @@
+<form>
 <%= form_with(model: date_schedule, local: true) do |form| %>
   <% if date_schedule.errors.any? %>
     <div id="error_explanation">
@@ -10,16 +11,25 @@
       </ul>
     </div>
   <% end %>
-  <%= @current_user.id %>
-  <%= @receive_user.id %>
-  <div class="field">
+  <!-- <%= @current_user.id %>
+  <%= @receive_user.id %> -->
     <!-- <%= form.label :date_of_meet %> -->
     <%= form.hidden_field :date_sug_user_id, :value => date_sug_user_id%>
     <%= form.hidden_field :date_tar_user_id, :value => date_tar_user_id%>
     <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker'%>
-  </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">時間帯</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
   <!-- このサブミットで予定を提案するメッセージを飛ばす -->
-  <div class="actions">
+  <div class="actions" align="right">
     <%= form.submit '提案する', class: "btn btn-primary"%>
   </div>
 <% end %>
+</form>
