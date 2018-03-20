@@ -20,39 +20,35 @@
     <%= form.label :email %>
     <%= form.email_field :email,class:"form-control"%>
   </div>
-  <!-- パスワードはベット変更の処理が必要 -->
-  <!-- <div class="field">
+  <!-- パスワードは認証の処理が必要 -->
+  <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password,class:"form-control"%>
-  </div> -->
+  </div>
   <p class="lead">現在の画像</p>
   <div class="row">
     <div class="container col-md-3">
       <div class="field" style="padding:2%">
           <%= image_tag user.image, class:"rounded", style:"padding:2%" %>
-          <%= form.file_field :image, class:"filestyle", "data-buttonText": "ファイル選択"
- %>
+          <%= form.file_field :image, class:"filestyle", "data-buttonText": "ファイル選択" %>
       </div>
     </div>
     <div class="container col-md-3">
       <div class="field" style="padding:2%">
           <%= image_tag user.image2, class:"rounded", style:"padding:2%"%>
-          <%= form.file_field :image2, class:"filestyle", "data-buttonText": "ファイル選択"
- %>
+          <%= form.file_field :image2, class:"filestyle", "data-buttonText": "ファイル選択"%>
       </div>
     </div>
     <div class="container col-md-3">
       <div class="field" style="padding:2%">
           <%= image_tag user.image3, class:"rounded", style:"padding:2%"%>
-          <%= form.file_field :image3, class:"filestyle", "data-buttonText": "ファイル選択"
- %>
+          <%= form.file_field :image3, class:"filestyle", "data-buttonText": "ファイル選択"%>
       </div>
     </div>
     <div class="container col-md-3">
       <div class="field" style="padding:2%">
           <%= image_tag user.image4, class:"rounded", style:"padding:2%"%>
-          <%= form.file_field :image4, class:"filestyle", "data-buttonText": "ファイル選択"
- %>
+          <%= form.file_field :image4, class:"filestyle", "data-buttonText": "ファイル選択"%>
       </div>
     </div>
   </div>
