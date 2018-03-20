@@ -20,6 +20,10 @@ validates :email, presence: true, length: { maximum: 255 },
                     uniqueness: { case_sensitive: false }
 # 画像アップロード用
 mount_uploader :image, ImageUploader
+mount_uploader :image2, ImageUploader
+mount_uploader :image3, ImageUploader
+mount_uploader :image4, ImageUploader
+
 
   def matchers
       requester_ids = targeted_match_requests.pluck(:request_user_id)

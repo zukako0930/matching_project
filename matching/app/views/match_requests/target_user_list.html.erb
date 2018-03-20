@@ -15,7 +15,7 @@
               <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
               <p>
                 <% if user.prof %>
-                  <%= user.prof.truncate(15) %>
+                  <p class="comment" align="left"><%= user.prof.truncate(15)%></p>
                 <% else %>
                   <br>
                 <% end %>
