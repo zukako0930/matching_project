@@ -101,8 +101,8 @@
       <!-- 部分テンプレート化できる -->
 
       <strong>提案した予定</strong><br>
-      <% if @sug_schedules.exists? %>
-        <% @sug_schedules.reverse_each do |sug_schedule|%>
+      <% if @sug_schedules.where(confirm:false).exists? %>
+        <% @sug_schedules.where(confirm:false).reverse_each do |sug_schedule|%>
           <%= sug_schedule.date_of_meet.strftime("%Y年%m月%d日")%>
           <%= link_to '取消', date_schedule_path(sug_schedule.id), method: :delete,class:"btn btn-block btn-success"%><br>
         <% end %>
@@ -111,8 +111,8 @@
       <% end %>
 
       <strong>提案された予定</strong><br>
-      <% if @sugged_schedules.exists? %>
-        <% @sugged_schedules.reverse_each do |sugged_schedule|%>
+      <% if @sugged_schedules.where(confirm:false).exists? %>
+        <% @sugged_schedules.where(confirm:false).reverse_each do |sugged_schedule|%>
           <%= sugged_schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
           <%= form_for(DateSchedule.find_by(id:sugged_schedule.id)) do |form|%>
             <%= form.hidden_field :confirm, :value => true %>
@@ -122,16 +122,56 @@
       <% else %>
         <p style="color:darkgray;">提案された予定はありません。</p>
       <% end %>
+
+      <strong>確定した予定</strong><br>
+      <% if @sug_schedules.where(confirm:false).exists? %>
+        <% @sug_schedules.where(confirm:false).reverse_each do |schedule|%>
+          <%= schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
+        <% end %>
+      <% end %>
+      <% if @sugged_schedules.where(confirm:true).exists? %>
+        <% @sugged_schedules.reverse_each do |schedule|%>
+          <%= schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
+        <% end %>
+      <% end %>
+      <% unless @sug_schedules.where(confirm:true).exists? || @sugged_schedules.where(confirm:true).exists? %>
+        <p style="color:darkgray;">提案された予定はありません。</p>
+      <% end %>
+
     <% end %>
   </div>
   </div>
 </div>
 </div>
-<nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A; color:#ffa500;">
+<!-- <nav class="navbar fixed-bottom navbar-light" style="background-color: #120A4A; color:#ffa500;">
     <div class="navbar-center">
         <%= link_to image_tag(@receive_user.image, class: "rounded-circle", size:"25x25"), controller: :users, action: :profile, id:@receive_user %>
         <%= @receive_user.name %>
     </div>
   </div>
-</nav>
+</nav> -->
+
+<?php
+$json = json_decode(file_get_contents('http://webservice.recruit.co.jp/hotpepper/genre/v1/?key=your_api_key&format=json'));
+?>
+<html>
+    <head>
+        <title>ホットペッパーAPIデモ</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>ホットペッパーAPIデモ</h1>
+            <p>飲食店のジャンル一覧を表示する。</p>
+            <p>リクエスト先URL: http://webservice.recruit.co.jp/hotpepper/genre/v1/?key=94ea8e83aa8a8d58&format=json</p>
+            <ul class="genres">
+                <?php foreach($json->results->genre as $genre): ?>
+                    <li class="genre">
+                        ジャンル名: <?php echo $genre->name ?><br/>
+                        ジャンルコード: <?php echo $genre->code ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </body>
+</html>
 </div>
