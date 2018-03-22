@@ -72,6 +72,31 @@
             </div>
           </div>
           <div class="col-8">
+            <div id="ad-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+              <!-- 実際の画像の表示処理 -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">    <!-- activeをつけたものがページ表示時に表示される -->
+                  <%= image_tag 'banner1.png', class: "d-block w-100", alt:"First slide"%>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'banner2.png', class: "d-block w-100", alt:"Second slide"%>
+                </div>
+                <div class="carousel-item">
+                  <%= image_tag 'banner3.png', class: "d-block w-100", alt:"Third slide"%>
+                </div>
+              </div>
+
+              <!-- 前の画像へ戻るための矢印ポインタ -->
+              <a class="carousel-control-prev" href="#ad-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#ad-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
             <%= yield%>
           </div>
         </div>
