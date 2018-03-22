@@ -3,7 +3,7 @@
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<div class="container-fluid col-md-8">
+<div class="container-fluid">
   <div id="ad-carousel" class="carousel slide" data-ride="carousel" data-interval="3500">
     <!-- 実際の画像の表示処理 -->
     <div class="carousel-inner">
@@ -151,7 +151,7 @@
   </div>
 </nav> -->
 
-<?php
+<!-- <?php
 $json = json_decode(file_get_contents('http://webservice.recruit.co.jp/hotpepper/genre/v1/?key=your_api_key&format=json'));
 ?>
 <html>
@@ -173,5 +173,5 @@ $json = json_decode(file_get_contents('http://webservice.recruit.co.jp/hotpepper
             </ul>
         </div>
     </body>
-</html>
+</html> -->
 </div>

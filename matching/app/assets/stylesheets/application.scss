@@ -22,13 +22,16 @@
 body {
 	padding-top: 55px;
 	padding-bottom: 50px;
+	font-family: "Hiragino Maru Gothic Pro"
 }
 // imgタグの設定
 img {
 	max-width: 100%;
 	height: auto;
 }
-
+.container{
+	font-family: "Hiragino Maru Gothic Pro";
+}
 nav a:hover{
 	background-color: transparent;
 }
@@ -42,7 +45,27 @@ nav {
 body a:hover{
 	background-color: transparent;
 }
+.box_srcollbar {
+overflow:auto;
+width:100%;
+height:80vh;
+padding:5px;
+// border:3px solid #000;
+background-color:transparent;
+color:#000;
+font-size:14px;
+font-family: "Hiragino Maru Gothic Pro";
+}
 
+.to_message {
+    background-color: #f00;
+    transition: background-color 0.5s, border-radius 1s;
+}
+.to_message a:hover{
+	background-color: #333;
+    border-radius: 20px;
+    transition: background-color 1s, border-radius 2s;
+}
 
 // // 背景画像をいっぱいに表示
 // div {

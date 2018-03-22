@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <% if @current_user %>
             <ul class="navbar-nav mr-auto active">
-              <%= link_to 'メッセージ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %>
+              <!-- <%= link_to 'メッセージ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %> -->
               <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;"%>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#FFC400;">
@@ -48,7 +48,37 @@
       </div>
     </nav>
 
-    <%= yield%>
+    <% if @current_user %>
+      <div class="container-fluid">
+        <div class="row">
+           <div class="col-4" style="padding-top:3%;background-color:#FAFAFA;">
+            <div class="box_srcollbar">
+            <table class="newest_message" style="width:100%">
+              <% @current_user.matchers.each do |matcher| %>
+                <tr>
+                  <th><%= link_to image_tag(matcher.image,class:'rounded-circle',size:"40x40"), controller: :users, action: :profile, id:matcher %></th>
+                  <% newest_message = Message.where(send_user_id:@current_user,receive_user_id:matcher).or(Message.where(send_user_id:matcher,receive_user_id:@current_user)).last%>
+                  <td>
+                    <%= matcher.name %>
+                    <% if newest_message%>
+                      <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @current_user.id),style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+                    <% else %>
+                      <%= link_to ' ', messages_path(receive_id: matcher.id, send_id: @current_user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+            </div>
+          </div>
+          <div class="col-8">
+            <%= yield%>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
 
   </body>
 </html>
