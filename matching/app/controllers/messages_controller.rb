@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @current_user = User.find_by(id: session[:user_id])
+    # params[:receive_id] = @current_user.id
     @messages = Message.talk(params[:receive_id], @current_user.id)
     @receive_user = User.find(params[:receive_id])
     @meet = MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: params[:receive_id])&& MeetRequest.exists?(meet_request_user_id: params[:receive_id], meet_target_user_id: @current_user.id)

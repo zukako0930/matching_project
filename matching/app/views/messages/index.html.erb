@@ -3,10 +3,32 @@
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<br><br>
 <div class="container-fluid col-md-8">
+  <div id="ad-carousel" class="carousel slide" data-ride="carousel" data-interval="3500">
+    <!-- 実際の画像の表示処理 -->
+    <div class="carousel-inner">
+      <div class="carousel-item active">    <!-- activeをつけたものがページ表示時に表示される -->
+        <%= image_tag 'carousel1.png', class: "d-block w-100", alt:"First slide"%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'carousel2.png', class: "d-block w-100", alt:"Second slide"%>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag 'carousel3.png', class: "d-block w-100", alt:"Third slide"%>
+      </div>
+    </div>
+    <!-- 前の画像へ戻るための矢印ポインタ -->
+    <a class="carousel-control-prev" href="#ad-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#ad-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 <div class="row" style="padding:2%;">
-  <div class="container col-md-7"  style="background-color:#4BB1FF;border-radius: 15px;">
+  <div class="col-8"  style="background-color:#4BB1FF;border-radius: 15px;">
     <%= form_with model: Message.new do |form| %>
       <div class="field">
         <%= form.hidden_field :send_user_id, :value => @current_user.id %>
@@ -51,7 +73,7 @@
       <% end %>
     </div>
   </div>
-  <div class="container col-md-4">
+  <div class="col-4">
     <div class="box">
     <p align="center">会いたい！ボタン</p>
     <%= form_for(MeetRequest.new,url: meet_requests_url) do |form|%>
@@ -66,7 +88,18 @@
 
     <% if @meet %>
       <div align="center">お互いに会いたいようです。<br>日程調整をしましょう。</div>
-      <%= render :partial => "date_schedules/form",:locals => {date_schedule:DateSchedule.new,date_sug_user_id:@current_user.id,date_tar_user_id:@receive_user.id}%>
+
+      <!-- 部分テンプレート化できる -->
+      <%= form_for(DateSchedule.new) do |form|%>
+        <%= form.hidden_field :date_sug_user_id, :value => @current_user.id%>
+        <%= form.hidden_field :date_tar_user_id, :value => @receive_user.id%>
+        <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker'%>
+        <div class="actions" align="right">
+          <%= form.submit '提案する', class: "btn btn-primary"%>
+        </div>
+      <% end %>
+      <!-- 部分テンプレート化できる -->
+
       <strong>提案した予定</strong><br>
       <% if @sug_schedules.exists? %>
         <% @sug_schedules.reverse_each do |sug_schedule|%>

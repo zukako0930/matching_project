@@ -1,5 +1,5 @@
 <h1>New Date Schedule</h1>
 
-<%= render 'form', date_schedule: @date_schedule %>
+<%= render 'form', date_schedule: @date_schedule,date_sug_user_id:@current_user,date_tar_user_id:params[:receive_id] %>
 
 <%= link_to 'Back', date_schedules_path %>

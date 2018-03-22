@@ -29,7 +29,7 @@ class MeetRequestsController < ApplicationController
     @meet_request = MeetRequest.new(meet_request_params)
     @receive_user = User.find(@meet_request.meet_target_user_id)
     if @meet_request.save
-      redirect_to controller: 'messages', action: 'index', :receive_id => @receive_user.id, notice: '会いたい！状態です。'
+      redirect_to controller: 'messages', action: 'index', :receive_id => @receive_user, notice: '会いたい！状態です。'
     else
       render :new, notice: '会いたいボタンエラー'
     end
