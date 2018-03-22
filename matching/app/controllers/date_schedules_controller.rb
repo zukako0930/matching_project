@@ -48,15 +48,24 @@ class DateSchedulesController < ApplicationController
   # PATCH/PUT /date_schedules/1
   # PATCH/PUT /date_schedules/1.json
   def update
-    respond_to do |format|
-      if @date_schedule.update(date_schedule_params)
-        format.html { redirect_to @date_schedule, notice: 'Date schedule was successfully updated.' }
-        format.json { render :show, status: :ok, location: @date_schedule }
-      else
-        format.html { render :edit }
-        format.json { render json: @date_schedule.errors, status: :unprocessable_entity }
-      end
+    @current_user = User.find_by(id: session[:user_id])
+    @receive_user = User.find(@date_schedule.date_sug_user_id)
+    message_body = "#{@date_schedule.date_of_meet.strftime("%Y年%m月%d日")}"
+    # スケジュールが確定したらMessageを飛ばす。
+    if @date_schedule.update(date_schedule_params)
+      Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}に確定しました。")
+      redirect_to controller:'messages', action:'index',:receive_id => @receive_user
+    else
     end
+    # respond_to do |format|
+    #   if @date_schedule.update(date_schedule_params)
+    #     format.html { redirect_to @date_schedule, notice: 'Date schedule was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @date_schedule }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @date_schedule.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /date_schedules/1

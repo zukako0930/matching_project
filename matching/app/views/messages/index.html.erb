@@ -101,8 +101,8 @@
       <% end %>
 
       <strong>確定した予定</strong><br>
-      <% if @sug_schedules.where(confirm:false).exists? %>
-        <% @sug_schedules.where(confirm:false).reverse_each do |schedule|%>
+      <% if @sug_schedules.where(confirm:true).exists? %>
+        <% @sug_schedules.where(confirm:true).reverse_each do |schedule|%>
           <%= schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
         <% end %>
       <% end %>
@@ -111,7 +111,8 @@
           <%= schedule.date_of_meet.strftime("%Y年%m月%d日")%><br>
         <% end %>
       <% end %>
-      <% unless @sug_schedules.where(confirm:true).exists? || @sugged_schedules.where(confirm:true).exists? %>
+      <% if @sug_schedules.where(confirm:true).exists? || @sugged_schedules.where(confirm:true).exists? %>
+      <% else %>
         <p style="color:darkgray;">提案された予定はありません。</p>
       <% end %>
 
