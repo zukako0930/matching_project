@@ -67,6 +67,17 @@ font-family: "Hiragino Maru Gothic Pro";
     transition: background-color 1s, border-radius 2s;
 }
 
+tr:hover {
+    background-color: white;
+		box-shadow: 0px 0px 10px orange;
+		transition: background-color 1s, box-shadow 1s;
+}
+
+table {
+    background-color: white;
+		box-shadow: 0px 0px 8px silver;
+}
+
 // // 背景画像をいっぱいに表示
 // div {
 //   background-size:cover;
