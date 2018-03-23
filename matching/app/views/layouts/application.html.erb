@@ -51,7 +51,7 @@
     <% if @current_user %>
       <div class="container-fluid">
         <div class="row">
-           <div class="col-4" style="padding-top:3%;background-color:#FAFAFA;">
+           <div class="col-4" style="padding-top:3%;">
             <div class="box_srcollbar">
             <table class="newest_message" style="width:100%">
               <% @current_user.matchers.each do |matcher| %>
@@ -71,7 +71,7 @@
             </table>
             </div>
           </div>
-          <div class="col-8" style="padding-top:3%;">
+          <div class="col-8" style="padding-top:3%; background-color:#FAFAFA;">
             <div id="ad-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 
               <!-- 実際の画像の表示処理 -->
