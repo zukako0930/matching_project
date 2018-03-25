@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :block_lists
   resources :date_schedules
   resources :meet_requests
   root to: 'sessions#new'

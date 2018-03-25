@@ -5,7 +5,8 @@ class MatchRequestsController < ApplicationController
     @current_user = User.find_by(id: session[:user_id]) #自分
     #送信者が自分のリクエストのターゲットユーザのリスト(自分がリクエストを送った人)
     requested = MatchRequest.where(request_user_id: @current_user.id).pluck(:target_user_id)
-    @users = User.where("id != ?",@current_user.id).where.not(id: requested) #自分以外
+    block = BlockList.where(blocked_by:@current_user.id).pluck(:blocked)
+    @users = User.where("id != ?",@current_user.id).where.not(id: requested).where.not(id:block) #自分/blockしてる以外
 
   end
 
@@ -66,11 +67,17 @@ class MatchRequestsController < ApplicationController
   # DELETE /match_requests/1
   # DELETE /match_requests/1.json
   def destroy
-    @match_request.destroy
-    respond_to do |format|
-      format.html { redirect_to match_requests_url, notice: 'Match request was successfully destroyed.' }
-      format.json { head :no_content }
+    @current_user = User.find_by(id:session[:user_id])
+    if @match_request.destroy
+      BlockList.create(blocked_by:@match_request.request_user_id,blocked:@match_request.target_user_id)
+      Message.where(send_user_id:@match_request.request_user_id, receive_user_id:@match_request.target_user_id).destroy_all
+      Message.where(send_user_id:@match_request.target_user_id, receive_user_id:@match_request.request_user_id).destroy_all
+      redirect_to controller: "match_requests", action:"target_user_list", notice:"マッチを解除しました"
     end
+    # respond_to do |format|
+    #   format.html { redirect_to match_requests_url, notice: 'Match request was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
