@@ -57,12 +57,6 @@
             <div>
             <table style="width:100%">
               <% @current_user.matchers.each do |matcher| %>
-              <% if matcher.id == User.find_by(id: params[:receive_id]).id%>
-              あああ
-              <% else %>
-              いいい
-              <% end %>
-              <%= matcher.id%>==<%= params[:receive_id]%>?
                 <tr class="<%= "highlight" if matcher.id == User.find_by(id: params[:receive_id]).id %>">
                   <th><%= link_to image_tag(matcher.image,class:'rounded-circle',size:"40x40"), controller: :users, action: :profile, id:matcher %></th>
                   <% newest_message = Message.where(send_user_id:@current_user,receive_user_id:matcher).or(Message.where(send_user_id:matcher,receive_user_id:@current_user)).last%>
