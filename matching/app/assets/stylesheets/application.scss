@@ -74,6 +74,11 @@ tr:hover {
 		transition: background-color 1s, box-shadow 1s;
 }
 
+tr.highlight {
+	box-shadow: 0px 0px 10px red;
+	background-color: #fff4fe;
+}
+
 table {
     background-color: white;
 		box-shadow: 0px 0px 8px silver;
