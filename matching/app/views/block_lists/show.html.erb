@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Blocked by:</strong>
+  <%= @block_list.blocked_by %>
+</p>
+
+<p>
+  <strong>Blocked:</strong>
+  <%= @block_list.blocked %>
+</p>
+
+<%= link_to 'Edit', edit_block_list_path(@block_list) %> |
+<%= link_to 'Back', block_lists_path %>

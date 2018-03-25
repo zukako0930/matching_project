@@ -26,3 +26,10 @@ button.btn-good:hover{
   background-color: #ffb7e1;
   transition: background-color 0.5s, border-radius 2s;
 }
+
+img:hover{
+  filter:alpha(opacity=50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+  transition: filter 0.5s, -moz-opacity 0.5s, opacity 0.5s;
+}
