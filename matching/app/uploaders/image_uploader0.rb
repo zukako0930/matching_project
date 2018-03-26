@@ -23,9 +23,9 @@ class ImageUploader0 < CarrierWave::Uploader::Base
     super.chomp(File.extname(super))+'.jpg' if original_filename.present?
   end
 
-  # def default_url
-  #   "default.jpg"
-  # end
+  def default_url
+    "gray.jpg"
+  end
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick

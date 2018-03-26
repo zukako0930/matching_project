@@ -13,3 +13,30 @@ tr:last-child th{
   border-width: 1px 0;
   font-family: "Hiragino Maru Gothic Pro";
 }
+
+.fileUploder{
+    position:relative;
+    /*↓幅はデザイン依存。場合によっては、指定しなくていい*/
+    width:315px;
+    /*↓高さ指定しないとIE7で領域がひろがる…？*/
+    height:31px;
+    /*↓はみ出した分隠す。IE対策*/
+    overflow:hidden;
+}
+.fileUploder .uploader{
+    position:absolute;
+    top:0;
+    /*↓leftからrightに。ボタンが右にあるので、rightにしないとだめ。IE対策。*/
+    right:0;
+    /*↓念のため*/
+    z-index:99;
+    width:100%;
+    height:100%;
+    /*↓ここでフォームアイテムの大きさを調整。IE対策*/
+    font-size:315px;
+    opacity:0;
+    /*↓IE6,7対策*/
+    filter:alpha(opacity=0);
+    /*↓IE8対策*/
+    -ms-filter:"alpha(opacity=0)";
+}

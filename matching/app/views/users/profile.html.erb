@@ -6,8 +6,8 @@
   <!-- 何枚目かの画像かを表すインディケーター -->
   <ol class="carousel-indicators">
     <li data-target="#profile-carousel" data-slide-to="0" class="active"></li>
-    <% if @user.image2==nil %><li data-target="#profile-carousel" data-slide-to="1" class=""></li><% end %>
-    <% if @user.image3==nil %><li data-target="#profile-carousel" data-slide-to="2" class=""></li><% end %>
+    <% if @user.image2 %><li data-target="#profile-carousel" data-slide-to="1" class=""></li><% end %>
+    <% if @user.image3 %><li data-target="#profile-carousel" data-slide-to="2" class=""></li><% end %>
   </ol>
 
   <!-- 実際の画像の表示処理 -->
@@ -15,15 +15,15 @@
     <div class="carousel-item active">    <!-- activeをつけたものがページ表示時に表示される -->
       <%= image_tag @user.image, class: "d-block w-100", alt:"First slide"%>
     </div>
-    <% if @user.image2==nil %>
-    <div class="carousel-item">
-      <%= image_tag @user.image2, class: "d-block w-100", alt:"Second slide"%>
-    </div>
+    <% if @user.image2 %>
+      <div class="carousel-item">
+        <%= image_tag @user.image2, class: "d-block w-100", alt:"Second slide"%>
+      </div>
     <% end %>
-    <% if @user.image3==nil %>
-    <div class="carousel-item">
-      <%= image_tag @user.image3, class: "d-block w-100", alt:"Third slide"%>
-    </div>
+    <% if @user.image3 %>
+      <div class="carousel-item">
+        <%= image_tag @user.image3, class: "d-block w-100", alt:"Third slide"%>
+      </div>
     <% end %>
   </div>
 

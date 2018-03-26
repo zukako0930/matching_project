@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def profile
   end
+
   def index
     @users = User.all
   end
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
+      # redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
     else
       redirect_to action: "new", notice:"有効な値を入力してください"
     end
@@ -46,15 +47,18 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to match_requests_target_user_list_path, notice:"プロフィールを更新しました。"
     end
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.html { redirect_to @user, notice: 'User was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @user }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /users/1

@@ -6,6 +6,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <% if @receive_user == nil %>
+    <% @receive_user = User.find_by(id: session[:user_id])%>
+  <% end %>
   <body>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light">
       <a class="navbar-brand" href="#">
@@ -19,7 +22,7 @@
           <% if @current_user %>
             <ul class="navbar-nav mr-auto active">
               <!-- <%= link_to 'メッセージ', user_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;" %> -->
-              <%= link_to 'マッチを探す', match_requests_target_user_list_path(@current_user), class: "nav-item nav-link", style:"color:#FFC400;"%>
+              <%= link_to 'マッチを探す', match_requests_target_user_list_path, class: "nav-item nav-link", style:"color:#FFC400;"%>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#FFC400;">
                   設定
@@ -57,7 +60,7 @@
             <div>
             <table style="width:100%">
               <% @current_user.matchers.each do |matcher| %>
-                <tr class="<%= "highlight" if matcher.id == User.find_by(id: params[:receive_id]).id %>">
+                <tr class="<%= "highlight" if matcher.id == @receive_user.id %>">
                   <th><%= link_to image_tag(matcher.image,class:'rounded-circle',size:"40x40"), controller: :users, action: :profile, id:matcher %></th>
                   <% newest_message = Message.where(send_user_id:@current_user,receive_user_id:matcher).or(Message.where(send_user_id:matcher,receive_user_id:@current_user)).last%>
                   <td>
