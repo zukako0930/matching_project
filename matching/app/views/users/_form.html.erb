@@ -19,8 +19,8 @@
   <div class="field">
     <div class="row">
       <div class="col-6">
-        <%= form.label '年齢' %>
-        <%= form.text_field :age, class:"form-control" %>
+        <%= form.label '年齢' %><br>
+        <%= form.select :age, @age_range, :selected => 18, class:"form-control" %>
         <span style="color:gray;">※後から変更できません</span>
       </div>
       <div class="col-6">

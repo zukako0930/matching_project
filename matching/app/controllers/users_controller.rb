@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
   # GET /users/new
   def new
+    @age_range = (18..99).to_a
     @user = User.new
   end
 
