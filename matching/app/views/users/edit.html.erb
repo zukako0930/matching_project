@@ -1,6 +1,6 @@
 <h1 style="margin-top:3%;"></h1>
 <%= form_with(model: @user) do |form| %>
-<div class="container-fluid col-md-8">
+<div class="container-fluid col-md-8" style="background-color:white;padding:3%;box-shadow: 0px 0px 8px silver;">
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :user_name, class:"form-control" %>
@@ -16,25 +16,25 @@
   </div>
   <p class="lead">現在の画像</p>
   <div class="row">
-    <div class="container col-md-3">
+    <div class="container col-3">
       <div class="field" style="padding:2%">
           <%= image_tag @user.image, class:"rounded", style:"padding:2%;",onClick:"$('#upfile').click()" %>
           <%= form.file_field :image, style:"display:none;", id:"upfile"%>
       </div>
     </div>
-    <div class="container col-md-3">
+    <div class="container col-3">
       <div class="field" style="padding:2%">
           <%= image_tag @user.image2, class:"rounded", style:"padding:2%",onClick:"$('#upfile2').click()"%>
           <%= form.file_field :image2, style:"display:none;", id:"upfile2"%>
       </div>
     </div>
-    <div class="container col-md-3">
+    <div class="container col-3">
       <div class="field" style="padding:2%">
           <%= image_tag @user.image3, class:"rounded", style:"padding:2%",onClick:"$('#upfile3').click()"%>
           <%= form.file_field :image3, style:"display:none;", id:"upfile3"%>
       </div>
     </div>
-    <div class="container col-md-3">
+    <div class="container col-3">
       <div class="field" style="padding:2%">
           <%= image_tag @user.image4, class:"rounded", style:"padding:2%",onClick:"$('#upfile4').click()"%>
           <%= form.file_field :image4, style:"display:none;", id:"upfile4"%>

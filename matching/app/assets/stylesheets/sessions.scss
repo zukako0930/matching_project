@@ -1,9 +1,9 @@
 // Place all the styles related to the Sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div {
-  background-size:cover;
-  // max-width: 100%;
-  background-position: top left;
-  background-repeat:no-repeat;
+.form_box{
+  border: 1px solid gray;
+  padding: 3%;
+  background-color: white;
+  position: relative;
 }

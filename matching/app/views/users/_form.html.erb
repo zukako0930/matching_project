@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-<div class="container-fluid col-md-8">
+<div class="container-fluid col-8" style="background-color:white;padding:3%;box-shadow: 0px 0px 8px silver;">
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :user_name, class:"form-control" %>
@@ -19,7 +19,7 @@
   <div class="field">
     <%= form.label '年齢' %>
     <%= form.text_field :age, class:"form-control" %>
-    <span style="color:gray;">後から変更できません</span>
+    <span style="color:gray;">※後から変更できません</span>
   </div>
   <div class="field">
     <%= form.label :email %>
@@ -64,9 +64,9 @@
   </div>
 
 
-  <div class="actions" align="right">
-    <%= form.submit '利用規約に同意して登録',class:"btn btn-success"%>
+  <div class="actions">
+    <%= link_to 'ホームに戻る',sessions_new_path, class:"btn btn-primary", align:"left"%>
+    <%= form.submit '利用規約に同意して登録',class:"btn btn-success", align:"right"%>
   </div>
-  <%= link_to 'ホーム',sessions_new_path, class:"btn btn-primary"%>
 
 <% end %>

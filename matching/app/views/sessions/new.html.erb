@@ -9,13 +9,13 @@
 <!-- <div style="background-image:url(<%= asset_path "yoshi.png" %>); height:700px; "/> -->
 <% provide(:title, "Log in") %>
 <div class="row">
-  <div class="container col-md-6">
+  <div class="col-4" style="width:100%">
     <%= image_tag 'yoshi.jpg'%>
   </div>
-  <div class="container col-md-6">
+  <div class="col-8">
     <div class="row">
-    <!-- <br><br><br><br><br><br><br><br> -->
-    <div class="container col-md-6">
+    <div class="container col-6" style="padding-top:10%;">
+      <div class="form_box">
       <%= image_tag 'title2.png'%>
       <%= form_for(:session, url: login_path) do |f| %>
         <div class="field">
@@ -28,6 +28,7 @@
         </div>
         <%= f.submit "ログイン", class: "btn btn-primary" %>
       <% end %>
+    </div>
   </div>
     <br>
   </div>
