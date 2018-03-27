@@ -7,7 +7,7 @@
   <div class = "row">
     <% @users.each do |user| %>
     <div class="col-3">
-        <div class="top5" align="center">
+        <div class="targets" align="center">
           <%= form_for(MatchRequest.new) do |form| %>
             <%= link_to image_tag(user.image, class: "rounded-circle", size:"150x150", style:"border:2px solid white;"), controller: :users, action: :profile,id: user%>
               <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
