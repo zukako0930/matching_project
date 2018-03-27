@@ -3,9 +3,10 @@
 <% if params[:notice] %>
   <div class="alert alert-success" role="alert"><%= params[:notice] %></div>
 <% end %>
-<div class="container-fluid">
-<div class="row" style="padding:2%;">
-  <div class="col-8"  style="background-image:url(<%= asset_path "talk_back.png" %>)">
+<div class="container-fluid" style="padding:2%;">
+<div class="row">
+  <div class="col-8"  style="background-image:url(<%= asset_path "talk_back.png" %>);border-radius:3px;border:3px solid black;">
+    <!-- box-shadow: 0px 0px 8px #383838 inset -->
     <%= form_with model: Message.new do |form| %>
       <div class="field">
         <%= form.hidden_field :send_user_id, :value => @current_user.id %>
