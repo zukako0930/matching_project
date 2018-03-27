@@ -20,13 +20,14 @@
     <div class="row">
       <div class="col-6">
         <%= form.label '年齢' %><br>
-        <%= form.select :age, @age_range, :selected => 18, class:"form-control" %>
+        <%= form.select :age, @age_range, :selected => 18, class:"form-control" %><br>
         <span style="color:gray;">※後から変更できません</span>
       </div>
       <div class="col-6">
         <label>性別</label><br>
         <label><%= form.radio_button :sex, 0, :checked => "checked" %> 男性</label>
-        <label><%= form.radio_button :sex, 1 %> 女性</label>
+        <label><%= form.radio_button :sex, 1 %> 女性</label><br>
+        <span style="color:gray;">※後から変更できません</span>
       </div>
     </div>
   </div>

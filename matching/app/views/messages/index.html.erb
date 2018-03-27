@@ -13,9 +13,9 @@
         <%= form.hidden_field :receive_user_id, :value => @receive_user.id %>
       </div>
       <div class="input-group mb-3">
-        <div class="input-group-prepend"><span class="input-group-text">To: <%= @receive_user.name%></span></div>
+        <!-- <div class="input-group-prepend"><span class="input-group-text">To: <%= @receive_user.name%></span></div> -->
         <% form.label :body %>
-        <%= form.text_field :body, id: :message_body, class: "form-control", placeholder: "想いを伝えよう。" %>
+        <%= form.text_field :body, id: :message_body, class: "form-control", placeholder: "メッセージ" %>
         <div class="input-group-append">
           <%= form.submit "送信",class: "btn btn-primary" %>
         </div>
@@ -71,9 +71,11 @@
       <%= form_for(DateSchedule.new) do |form|%>
         <%= form.hidden_field :date_sug_user_id, :value => @current_user.id%>
         <%= form.hidden_field :date_tar_user_id, :value => @receive_user.id%>
-        <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker'%>
-        <div class="actions" align="right">
-          <%= form.submit '提案する', class: "btn btn-primary"%>
+        <div class="input-group mb-3">
+          <%= form.text_field :date_of_meet, id: :date_schedule_date_of_meet ,class: 'date-picker form-control'%>
+          <div class="input-group-append">
+            <%= form.submit '提案する', class: "btn btn-primary"%>
+          </div>
         </div>
       <% end %>
       <!-- 部分テンプレート化できる -->
@@ -119,7 +121,8 @@
 
     <% end %>
   </div>
-  <%= link_to 'マッチを解除', match_request_path(@match_to.id), method: :delete,class:"btn btn-block btn-success"%><br>
+  <br>
+  <%= link_to 'マッチを解除', match_request_path(@match_to.id), method: :delete,class:"btn btn-block btn-success",data:{confirm: 'マッチを解除してよろしいですか？'} %><br>
 
   </div>
 </div>
