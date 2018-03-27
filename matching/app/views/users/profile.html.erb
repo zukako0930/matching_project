@@ -42,14 +42,17 @@
 </div>
 
   <div class="name">
-    <%= @user.name %>
+    <%= @user.name %>,
+    <% if @user.sex == 0%><%= image_tag 'man.svg', size:"20x20"%><%else%><%= image_tag 'woman.svg',size:"20x20"%><%end%>,
     <% if @user.age %><%= @user.age %><%else%>未設定<%end%>
   </div>
   <div class="box26">
     <span class="box-title">プロフィール</span>
     <p>
-      <% if @user.prof %>
+      <% if @user.prof.length > 0 %>
         <%= @user.prof %>
+      <% else %>
+        <span style="color:silver;">プロフィールはありません。</p>
       <% end %>
     </p>
   </div>

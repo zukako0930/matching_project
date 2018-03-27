@@ -24,7 +24,6 @@ mount_uploader :image2, ImageUploader0
 mount_uploader :image3, ImageUploader0
 mount_uploader :image4, ImageUploader0
 
-
   def matchers
       requester_ids = targeted_match_requests.pluck(:request_user_id)
           sent_match_requests
