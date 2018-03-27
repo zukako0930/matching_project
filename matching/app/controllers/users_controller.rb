@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
+       redirect_to controller: "sessions", action:"new", notice:"ユーザの登録に成功しました"
     else
       redirect_to action: "new", notice:"有効な値を入力してください"
     end

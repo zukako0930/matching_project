@@ -12,10 +12,10 @@
             <%= link_to image_tag(user.image, class: "rounded-circle", size:"150x150", style:"border:2px solid white;"), controller: :users, action: :profile,id: user%>
               <h5><%= link_to user.name, controller: :users, action: :profile,id: user %></h5>
               <p>
-                <% if user.prof %>
+                <% if user.prof.length > 0 %>
                   <p class="comment" align="left"><%= user.prof.truncate(15)%></p>
                 <% else %>
-                  <br>
+                  <p class="comment" align="left" style="color:silver;">no profile</p>
                 <% end %>
               </p>
               <%= form.hidden_field :request_user_id, :value => @current_user.id%>

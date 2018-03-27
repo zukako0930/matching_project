@@ -20,6 +20,7 @@
 @import "font-awesome";
 //固定したバーに隠れる部分をなくすため
 body {
+	background-color:#dce2ed;
 	padding-top: 55px;
 	padding-bottom: 50px;
 	font-family: "Hiragino Maru Gothic Pro"
@@ -71,7 +72,8 @@ font-family: "Hiragino Maru Gothic Pro";
 tr:hover {
     background-color: white;
 		box-shadow: 0px 0px 10px orange;
-		transition: background-color 0.6s, box-shadow 0.6s;
+		// border-right: solid 5px #ffc06e; //なぜかずれるので不採用
+		transition: background-color 0.6s, box-shadow 0.6s, border-right 0s;
 }
 
 tr.highlight {
@@ -84,6 +86,9 @@ table {
 		box-shadow: 0px 0px 8px silver;
 }
 
+p {
+	font-family: "Hiragino Maru Gothic Pro";
+}
 .shadow{
 	box-shadow: 0px 0px 8px silver;
 }

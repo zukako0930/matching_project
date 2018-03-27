@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <!-- <p style="color:Red"><%= @current_user.name %>_<%= @current_user.id %>でログイン中</p> -->
-<div class="container col-md-3">
+<div class="container col-6 profile_card">
 <div id="profile-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
 
   <!-- 何枚目かの画像かを表すインディケーター -->
@@ -13,16 +13,19 @@
   <!-- 実際の画像の表示処理 -->
   <div class="carousel-inner">
     <div class="carousel-item active">    <!-- activeをつけたものがページ表示時に表示される -->
-      <%= image_tag @user.image, class: "d-block w-100", alt:"First slide"%>
+      <%= image_tag @user.image, class: "d-block w-120", alt:"First slide"%>
+      <!-- <p><%= @user.name %></p> -->
     </div>
     <% if @user.image2 %>
       <div class="carousel-item">
         <%= image_tag @user.image2, class: "d-block w-100", alt:"Second slide"%>
+        <!-- <p><%= @user.name %></p> -->
       </div>
     <% end %>
     <% if @user.image3 %>
       <div class="carousel-item">
         <%= image_tag @user.image3, class: "d-block w-100", alt:"Third slide"%>
+        <!-- <p><%= @user.name %></p> -->
       </div>
     <% end %>
   </div>
@@ -38,15 +41,20 @@
   </a>
 </div>
 
+  <div class="name">
+    <%= @user.name %>
+    <% if @user.age %><%= @user.age %><%else%>未設定<%end%>
+  </div>
+  <div class="box26">
+    <span class="box-title">プロフィール</span>
+    <p>
+      <% if @user.prof %>
+        <%= @user.prof %>
+      <% end %>
+    </p>
+  </div>
 
-  <p>
-    <%= @user.name %><br>
-    <strong>プロフィール文</strong><br>
-    <% if @user.prof %>
-      <%= @user.prof %>
-    <% end %>
-  </p>
-
-  <%= link_to '戻る', {controller: :match_requests, action: :target_user_list}, class: "btn btn-primary" %>
   <!-- <%= link_to 'Back', users_path %> -->
 </div>
+<%= link_to '戻る', {controller: :match_requests, action: :target_user_list}, class: "btn btn-primary" %>
+<br><br><br><br>
