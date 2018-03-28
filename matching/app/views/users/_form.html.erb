@@ -47,8 +47,6 @@
         <!--onClickで画像タップが画像選択になる。idで同じところを探してる。-->
         <%= image_tag user.image, class:"rounded", style:"padding:2%",onClick:"$('#upfile').click()",id:"img_prev" %>
         <%= form.file_field :image,style:"display:none;", id:"upfile"%>
-          <!-- <%= image_tag user.image, class:"rounded", style:"padding:2%",id:"img_prev" %>
-          <%= form.file_field :image, id:"post_post_img"%> -->
           <script type="text/javascript">
           $(function() {
             function readURL(input) {
