@@ -18,26 +18,102 @@
   <div class="row">
     <div class="container col-3">
       <div class="field" style="padding:2%">
-          <%= image_tag @user.image, class:"rounded", style:"padding:2%;",onClick:"$('#upfile').click()" %>
-          <%= form.file_field :image, style:"display:none;", id:"upfile"%>
+        <%= image_tag @user.image, class:"rounded", style:"padding:2%",onClick:"$('#upfile').click()",id:"img_prev" %>
+        <%= form.file_field :image,style:"display:none;", id:"upfile"%>
+          <script type="text/javascript">
+          $(function() {
+            function readURL(input) {
+              if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                  $('#img_prev').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+              }
+            }
+
+            $("#upfile").change(function(){
+              $('#img_prev').removeClass('hidden');
+              readURL(this);
+            });
+          });
+          </script>
       </div>
     </div>
     <div class="container col-3">
       <div class="field" style="padding:2%">
-          <%= image_tag @user.image2, class:"rounded", style:"padding:2%",onClick:"$('#upfile2').click()"%>
-          <%= form.file_field :image2, style:"display:none;", id:"upfile2"%>
+        <%= image_tag @user.image2, class:"rounded", style:"padding:2%",onClick:"$('#upfile2').click()",id:'img_prev2' %>
+        <%= form.file_field :image2, style:"display:none;", id:"upfile2"%>
+        <script type="text/javascript">
+        $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                $('#img_prev2').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#upfile2").change(function(){
+            $('#img_prev2').removeClass('hidden');
+            readURL(this);
+          });
+        });
+        </script>
       </div>
     </div>
     <div class="container col-3">
       <div class="field" style="padding:2%">
-          <%= image_tag @user.image3, class:"rounded", style:"padding:2%",onClick:"$('#upfile3').click()"%>
-          <%= form.file_field :image3, style:"display:none;", id:"upfile3"%>
+        <%= image_tag @user.image3, class:"rounded", style:"padding:2%", onClick:"$('#upfile3').click()",id:"img_prev3"%>
+        <%= form.file_field :image3, style:"display:none;", id:"upfile3" %>
+        <script type="text/javascript">
+        $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                $('#img_prev3').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#upfile3").change(function(){
+            $('#img_prev3').removeClass('hidden');
+            readURL(this);
+          });
+        });
+        </script>
       </div>
     </div>
     <div class="container col-3">
       <div class="field" style="padding:2%">
-          <%= image_tag @user.image4, class:"rounded", style:"padding:2%",onClick:"$('#upfile4').click()"%>
-          <%= form.file_field :image4, style:"display:none;", id:"upfile4"%>
+        <%= image_tag @user.image4, class:"rounded", style:"padding:2%", onClick:"$('#upfile4').click()",id:"img_prev4"%>
+        <%= form.file_field :image4, style:"display:none;", id:"upfile4"%>
+        <script type="text/javascript">
+        $(function() {
+          function readURL(input) {
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                $('#img_prev4').attr('src', e.target.result);
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+          }
+
+          $("#upfile4").change(function(){
+            $('#img_prev4').removeClass('hidden');
+            readURL(this);
+          });
+        });
+        </script>
       </div>
     </div>
   </div>

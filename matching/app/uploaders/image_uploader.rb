@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    "human.svg"
+    "default.png"
   end
 
   # Include RMagick or MiniMagick support:
