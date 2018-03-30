@@ -8,14 +8,23 @@ class MessagesController < ApplicationController
 
   # GET /messages
   # GET /messages.json
+  def set_receive
+    session[:receive_id] = params[:receive_id]
+    redirect_to action: "index"
+  end
   def index
+    # session[:receive_id]=params[:receive_id]
     @current_user = User.find_by(id: session[:user_id])
     # if params[:receive_id] == nil
     #   params[:receive_id] == @current_user.id
     # end
-    @messages = Message.talk(params[:receive_id], @current_user.id)
-    @receive_user = User.find(params[:receive_id])
-    @meet = MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: params[:receive_id])&& MeetRequest.exists?(meet_request_user_id: params[:receive_id], meet_target_user_id: @current_user.id)
+    # @messages = Message.talk(params[:receive_id], @current_user.id)
+    # @receive_user = User.find(params[:receive_id])
+    # @meet = MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: params[:receive_id])&& MeetRequest.exists?(meet_request_user_id: params[:receive_id], meet_target_user_id: @current_user.id)
+    @messages = Message.talk(session[:receive_id], @current_user.id)
+    @receive_user = User.find(session[:receive_id])
+    @meet = MeetRequest.exists?(meet_request_user_id: @current_user.id, meet_target_user_id: @receive_user.id)&& MeetRequest.exists?(meet_request_user_id: @receive_user.id, meet_target_user_id: @current_user.id)
+
     @sug_schedules = DateSchedule.where(date_sug_user_id: @current_user.id,date_tar_user_id: @receive_user.id)
     @sugged_schedules = DateSchedule.where(date_sug_user_id: @receive_user.id,date_tar_user_id: @current_user.id)
     @match_to = MatchRequest.find_by(request_user_id:@current_user.id,target_user_id:@receive_user.id)
@@ -42,7 +51,9 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.save
     @receive_user = User.find(@message.receive_user_id)
-    redirect_to action: "index",:receive_id => @message.receive_user_id
+    session[:receive_id] = @message.receive_user_id
+    redirect_to action: "index"
+    # redirect_to action: "index",:receive_id => @message.receive_user_id
 
 #    respond_to do |format|
   #      #format.html { redirect_to @message, notice: 'Message was successfully created.' }

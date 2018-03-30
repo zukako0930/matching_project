@@ -30,7 +30,8 @@ class DateSchedulesController < ApplicationController
     message_body = "#{@date_schedule.date_of_meet.strftime("%Y年%m月%d日")}"
     if @date_schedule.save
       Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}を提案しました。")
-      redirect_to controller:'messages', action:'index',:receive_id => @receive_user
+      # redirect_to 'chat',:receive_id => @receive_user
+      redirect_to controller:'messages', action:'index'
     else
       render :new
     end
@@ -54,7 +55,7 @@ class DateSchedulesController < ApplicationController
     # スケジュールが確定したらMessageを飛ばす。
     if @date_schedule.update(date_schedule_params)
       Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}に確定しました。")
-      redirect_to controller:'messages', action:'index',:receive_id => @receive_user
+      redirect_to controller:'messages', action:'index'
     else
     end
     # respond_to do |format|
@@ -75,7 +76,7 @@ class DateSchedulesController < ApplicationController
     message_body = "#{@date_schedule.date_of_meet.strftime("%Y年%m月%d日")}"
     Message.create(send_user_id:@current_user.id, receive_user_id:@receive_user.id,body:"#{message_body}の提案を取り消しました。")
     @date_schedule.destroy
-    redirect_to controller: "messages", action:"index", notice:"予定を取り消しました。",:receive_id => @receive_user
+    redirect_to controller: "messages", action:"index", notice:"予定を取り消しました。"
     # respond_to do |format|
     #   format.html { redirect_to date_schedules_url, notice: 'Date schedule was successfully destroyed.' }
     #   format.json { head :no_content }

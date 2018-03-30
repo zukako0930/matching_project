@@ -64,7 +64,8 @@
                   <td>
                     <%= matcher.name %>
                     <% if newest_message%>
-                      <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @current_user.id),style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+                    <%= link_to newest_message.body.truncate(20), messages_set_receive_path(receive_id:matcher.id),method: :post,style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
+                      <!-- <%= link_to newest_message.body.truncate(20), messages_path(receive_id: matcher.id, send_id: @current_user.id),method: :post,style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%> -->
                     <% else %>
                       <%= link_to ' ', messages_path(receive_id: matcher.id, send_id: @current_user.id), style:"display:block; width:100%; height:100%; padding:10px; color:#c0c0c0; text-decoration: none;"%>
                     <% end %>
