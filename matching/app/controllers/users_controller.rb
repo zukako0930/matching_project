@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:profile,:show, :edit, :update, :destroy]
-
+  # ログイン判定
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy]
   # GET /users
   # GET /users.json
   def profile
@@ -22,6 +23,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    # if params[:access] != true
+    #   redirect_to controller:'match_requests', action:'target_user_list',notice:'#{params[:id]}アクセスできません'
+    # end
   end
 
   # POST /users
@@ -82,5 +86,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :string, :image,:image2,:image3,:image4, :email, :password, :prof, :sex, :age, :place)
+    end
+
+    def login_check
+      if signed_in?
+      else
+        redirect_to controller:'sessions',action:'new'
+      end
     end
 end

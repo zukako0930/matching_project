@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def new
     # render :layout => nil
   end
-  def create 
+  def create
     # userにデータベースからemail検索したuserを入れる
     user = User.find_by(email: params[:session][:email].downcase)
     # もしuserが存在してpasswordが合致していたらログイン後のホームへ
@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
     else
       # ユーザが見つからなければ
       #エラーメッセージを出してログインホームへ
-      # flash[:error] = 'Invalid email/password combination'
       @error = "メールアドレスかパスワードが間違っています。"
       render 'new'
     end
