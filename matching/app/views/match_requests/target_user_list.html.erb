@@ -29,4 +29,5 @@
       </div>
     <% end %>
   </div>
+  <%= will_paginate @users, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer,:previous_label=>'前', :next_label=>'次', class:"navbar-center"%>
 </div>

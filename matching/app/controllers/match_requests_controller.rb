@@ -7,8 +7,7 @@ class MatchRequestsController < ApplicationController
     #送信者が自分のリクエストのターゲットユーザのリスト(自分がリクエストを送った人)
     requested = MatchRequest.where(request_user_id: @current_user.id).pluck(:target_user_id)
     block = BlockList.where(blocked_by:@current_user.id).pluck(:blocked)
-    @users = User.where("id != ?",@current_user.id).where.not(id: requested).where.not(id:block) #自分/blockしてる以外
-
+    @users = User.where("id != ?",@current_user.id).where.not(id: requested).where.not(id:block).paginate(:page => params[:page], :per_page => 12) #自分/blockしてる以外
   end
 
   # GET /match_requests
