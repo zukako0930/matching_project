@@ -1,5 +1,6 @@
 class DateSchedulesController < ApplicationController
   before_action :set_date_schedule, only: [:show, :edit, :update, :destroy]
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy,:index]
 
   # GET /date_schedules
   # GET /date_schedules.json
@@ -93,5 +94,11 @@ class DateSchedulesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def date_schedule_params
       params.require(:date_schedule).permit(:date_sug_user_id, :date_tar_user_id, :date_of_meet, :confirm)
+    end
+
+    def login_check
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
+      end
     end
 end

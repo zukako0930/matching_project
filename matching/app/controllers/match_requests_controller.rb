@@ -1,5 +1,6 @@
 class MatchRequestsController < ApplicationController
   before_action :set_match_request, only: [:show, :edit, :update, :destroy]
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy,:index]
 
   def target_user_list
     @current_user = User.find_by(id: session[:user_id]) #自分
@@ -89,5 +90,10 @@ class MatchRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_request_params
       params.require(:match_request).permit(:request_user_id, :integer, :target_user_id, :integer)
+    end
+    def login_check
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
+      end
     end
 end

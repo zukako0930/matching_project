@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-
+  before_action :login_check, only: [:show, :edit, :update, :destroy,:index]
 # アクセスできない
   def check
     @messages = Message.all
@@ -98,5 +98,10 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params.require(:message).permit(:body, :send_user_id, :receive_user_id)
+    end
+    def login_check
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
+      end
     end
 end
