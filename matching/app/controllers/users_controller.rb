@@ -23,9 +23,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    # if params[:access] != true
-    #   redirect_to controller:'match_requests', action:'target_user_list',notice:'#{params[:id]}アクセスできません'
-    # end
+    @access_id = params[:id]
+    if @access_id.to_i != @current_user.id
+      redirect_to match_requests_target_user_list_path
+    end
   end
 
   # POST /users
