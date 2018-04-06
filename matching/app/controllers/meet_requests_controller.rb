@@ -1,5 +1,6 @@
 class MeetRequestsController < ApplicationController
   before_action :set_meet_request, only: [:show, :edit, :update, :destroy]
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy]
 
   # GET /meet_requests
   # GET /meet_requests.json
@@ -79,5 +80,10 @@ class MeetRequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meet_request_params
       params.require(:meet_request).permit(:meet_request_user_id, :meet_target_user_id)
+    end
+    def login_check
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
+      end
     end
 end

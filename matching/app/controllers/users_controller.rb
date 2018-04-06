@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:profile,:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:profile,:show, :edit, :update, :destroy, :index]
   # ログイン判定
-  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy]
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy,:index]
   # GET /users
   # GET /users.json
   def profile
@@ -90,9 +90,8 @@ class UsersController < ApplicationController
     end
 
     def login_check
-      if signed_in?
-      else
-        redirect_to controller:'sessions',action:'new'
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
       end
     end
 end

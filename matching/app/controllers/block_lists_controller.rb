@@ -1,5 +1,6 @@
 class BlockListsController < ApplicationController
   before_action :set_block_list, only: [:show, :edit, :update, :destroy]
+  before_action :login_check, only: [:profile,:show, :edit, :update, :destroy,:index]
 
   # GET /block_lists
   # GET /block_lists.json
@@ -70,5 +71,11 @@ class BlockListsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def block_list_params
       params.require(:block_list).permit(:blocked_by, :blocked)
+    end
+
+    def login_check
+      if session[:user_id] == nil
+        redirect_to controller:'sessions',action:'new', notice:'ログインしてください'
+      end
     end
 end
